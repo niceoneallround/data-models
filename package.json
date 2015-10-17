@@ -1,6 +1,6 @@
 {
   "name": "data-models",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Contains PN data-model definitions",
   "main": "index.js",
   "scripts": {
@@ -20,9 +20,6 @@
   },
   "homepage": "https://github.com/niceoneallround/data-models#readme",
   "dependencies": {
-    "async": "^1.4.2",
-    "http-status": "^0.2.0",
-    "node-utils": "git://github.com/niceoneallround/node-utils.git"
   },
   "devDependencies": {
     "grunt": "0.x.x",
