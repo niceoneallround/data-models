@@ -1,0 +1,33 @@
+{
+  "name": "data-models",
+  "version": "1.0.0",
+  "description": "Contains PN data-model definitions",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niceoneallround/data-models.git"
+  },
+  "keywords": [
+    "pn"
+  ],
+  "author": "rich@webshield.io",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/niceoneallround/data-models/issues"
+  },
+  "homepage": "https://github.com/niceoneallround/data-models#readme",
+  "dependencies": {
+    "async": "^1.4.2",
+    "http-status": "^0.2.0",
+    "node-utils": "git://github.com/niceoneallround/node-utils.git"
+  },
+  "devDependencies": {
+    "grunt": "0.x.x",
+    "grunt-buddyjs": "^0.1.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-jscs": "^0.8.0"
+  }
+}
