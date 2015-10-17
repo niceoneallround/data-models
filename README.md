@@ -1,2 +1,2 @@
 # data-models
-Package that contains the data model files
+Package that contains the data model files.
