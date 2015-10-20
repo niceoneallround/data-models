@@ -9,7 +9,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     buddyjs: {
-      src: ['lib/*.js'],
+      src: ['lib/*.js', 'test/*.js'],
       options: {
         ignore: [0, 1, 2]
       }
@@ -17,7 +17,7 @@ module.exports = function(grunt) {
 
     jshint: {
       all: ['Gruntfile.js',
-        'lib/*.js'],
+        'lib/*.js', 'test/*.js'],
       options: {
         predef: ['describe', 'it', 'before', 'after'],
         exported: ['should'],
@@ -32,9 +32,18 @@ module.exports = function(grunt) {
     },
 
     jscs: {
-      src: ['lib', 'lib/*.js'],
+      src: ['lib', 'lib/*.js', 'test/*.js'],
       options: {
         preset: 'airbnb'
+      }
+    },
+
+    mochaTest: {
+      unitTest: {
+        options: {
+          reporter: 'spec'
+        },
+        src: ['test/*.js']
       }
     }
 
@@ -43,12 +52,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-buddyjs');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-jscs');
+  grunt.loadNpmTasks('grunt-mocha-test');
 
   grunt.registerTask('pp', ['jshint', 'jscs', 'buddyjs']);
+  grunt.registerTask('test', ['pp', 'mochaTest:unitTest']);
 
-  grunt.registerTask('buildTestCode', ['pp']);
-  grunt.registerTask('test', ['pp']);
-  grunt.registerTask('release', ['pp']);
+  grunt.registerTask('buildTestCode', ['pp', 'mochaTest:unitTest']);
+  grunt.registerTask('release', ['buildTestCode']);
 
   grunt.registerTask('default', ['buildTestCode']);
 
