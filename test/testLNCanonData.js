@@ -23,6 +23,12 @@ describe('LN Canon Data tests', function() {
       LNCanonData.checkBobStructure(bob);
     });
 
+    it('1.2 test override props.id checkBobStructure ', function() {
+      var bob = LNCanonData.createBob();
+      bob['@id'] = '23'; // by default checks on canonId
+      LNCanonData.checkBobStructure(bob, {id: '23'});
+    });
+
     it('1.2 test create ln Alice', function() {
       var a = LNCanonData.createAlice();
       a.should.have.property(LN_P.DOB, COMMON_CD.aliceBirthDate);
