@@ -7,18 +7,22 @@ var should = require('should'),
   LNCanonData = require('../lib/LNCanonData'),
   COMMON_CD = require('../lib/commonCanonData').CANON_DATA,
   LN_P = require('../lib/LNPnDataModel').PROPERTY,
+  LnSSNValidEnum = require('../lib/LNPnDataModel').SSNValidEnum,
+  LnSubjectSSNIndicatorEnum = require('../lib/LNPnDataModel').SubjectSSNIndicatorEnum,
   _ = require('underscore');
 
 describe('LN Canon Data tests', function() {
   'use strict';
 
-  describe('1 test create alice and bob', function() {
+  describe('1 test create tests', function() {
 
     it('1.1 test create ln Bob', function() {
       var bob = LNCanonData.createBob();
       bob.should.have.property(LN_P.DOB, COMMON_CD.bobBirthDate);
       bob.should.have.property(LN_P.DOD, COMMON_CD.bobDeathDate);
       bob.should.have.property(LN_P.SSN, COMMON_CD.bobSSN);
+      bob.should.have.property(LN_P.SSNValid, LnSSNValidEnum.Good.code);
+      bob.should.have.property(LN_P.SubjectSSNIndicator, LnSubjectSSNIndicatorEnum.Yes.code);
       _.has(bob, 'undefined').should.be.eql(false, 'bob has an undefined property');
 
       LNCanonData.checkBobStructure(bob);
