@@ -17,6 +17,7 @@ describe('LN Canon Data tests', function() {
     it('1.1 test create ln Bob', function() {
       var bob = LNCanonData.createBob();
       bob.should.have.property(LN_P.DOB, COMMON_CD.bobBirthDate);
+      bob.should.have.property(LN_P.DOD, COMMON_CD.bobDeathDate);
       bob.should.have.property(LN_P.SSN, COMMON_CD.bobSSN);
       _.has(bob, 'undefined').should.be.eql(false, 'bob has an undefined property');
 
