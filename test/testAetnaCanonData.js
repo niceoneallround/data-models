@@ -33,8 +33,8 @@ describe('Aetna Canon Data tests', function() {
     it('1.4 test SSNValid enum', function() {
       var a = AetnaCanonData.createAlice();
       AetnaCanonData.checkAliceStructure(a);
-      a[AETNA_P.SSNValid] = AetnaSSNValidEnum.Yes.code;
-      a.should.have.property(AETNA_P.SSNValid, 'Yes');
+      a[AETNA_P.SSNValid] = AetnaSSNValidEnum.Good.code;
+      a.should.have.property(AETNA_P.SSNValid, 'Good');
     });
 
   }); // describe 2
