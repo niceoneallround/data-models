@@ -9,7 +9,7 @@ var should = require('should'),
 describe('Aetna Canon Data tests', function() {
   'use strict';
 
-  describe('1 create tests', function() {
+  describe('1 create Aetna canon data tests', function() {
 
     it('1.1 test create Bob', function() {
       var bob = AetnaCanonData.createBob();
@@ -24,7 +24,7 @@ describe('Aetna Canon Data tests', function() {
       AetnaCanonData.checkBobStructure(bob, {id: '23'});
     });
 
-    it('1.3 test create ln Alice', function() {
+    it('1.3 test create Alice', function() {
       var a = AetnaCanonData.createAlice();
       a.should.have.property(AETNA_P.DOB, COMMON_CD.aliceBirthDate);
       AetnaCanonData.checkAliceStructure(a);
@@ -35,6 +35,12 @@ describe('Aetna Canon Data tests', function() {
       AetnaCanonData.checkAliceStructure(a);
       a[AETNA_P.SSNValid] = AetnaSSNValidEnum.Good.code;
       a.should.have.property(AETNA_P.SSNValid, 'Good');
+    });
+
+    it('1.5 test create Rich', function() {
+      var r = AetnaCanonData.createRich();
+      r.should.have.property(AETNA_P.DOB, COMMON_CD.rich.BirthDate);
+      AetnaCanonData.checkRichStructure(r);
     });
 
   }); // describe 2
