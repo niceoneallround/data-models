@@ -34,5 +34,11 @@ describe('LN Canon Data tests', function() {
       LNCanonData.checkAliceStructure(a);
     });
 
+    it('1.3 test create ln Rich', function() {
+      var a = LNCanonData.createRich();
+      a.should.have.property(LN_P.DOB, COMMON_CD.rich.BirthDate);
+      LNCanonData.checkRichStructure(a);
+    });
+
   }); // describe 1
 });
