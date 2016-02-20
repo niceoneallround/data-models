@@ -21,7 +21,7 @@ describe('Aetna Canon Data tests', function() {
     it('1.2 test override props.id checkBobStructure ', function() {
       var bob = AetnaCanonData.createBob();
       bob['@id'] = '23'; // by default checks on canonId
-      AetnaCanonData.checkBobStructure(bob, {id: '23'});
+      AetnaCanonData.checkBobStructure(bob, { id: '23' });
     });
 
     it('1.3 test create Alice', function() {
