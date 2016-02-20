@@ -7,12 +7,12 @@ var should = require('should'),
   LnSSNValidEnum = require('../lib/LNPnDataModel').SSNValidEnum,
   LnSubjectSSNIndicatorEnum = require('../lib/LNPnDataModel').SubjectSSNIndicatorEnum;
 
-describe('LN Canon Data tests', function() {
+describe('LN Canon Data tests', function () {
   'use strict';
 
-  describe('1 create tests', function() {
+  describe('1 create tests', function () {
 
-    it('1.1 test create Bob', function() {
+    it('1.1 test create Bob', function () {
       var bob = LNCanonData.createBob();
       bob.should.have.property(LN_P.DOB, COMMON_CD.bobBirthDate);
       bob.should.have.property(LN_P.DOD, COMMON_CD.bobDeathDate);
@@ -22,19 +22,19 @@ describe('LN Canon Data tests', function() {
       LNCanonData.checkBobStructure(bob);
     });
 
-    it('1.2 test override props.id checkBobStructure ', function() {
+    it('1.2 test override props.id checkBobStructure ', function () {
       var bob = LNCanonData.createBob();
       bob['@id'] = '23'; // by default checks on canonId
       LNCanonData.checkBobStructure(bob, { id: '23' });
     });
 
-    it('1.3 test create ln Alice', function() {
+    it('1.3 test create ln Alice', function () {
       var a = LNCanonData.createAlice();
       a.should.have.property(LN_P.DOB, COMMON_CD.aliceBirthDate);
       LNCanonData.checkAliceStructure(a);
     });
 
-    it('1.3 test create ln Rich', function() {
+    it('1.3 test create ln Rich', function () {
       var a = LNCanonData.createRich();
       a.should.have.property(LN_P.DOB, COMMON_CD.rich.BirthDate);
       LNCanonData.checkRichStructure(a);
