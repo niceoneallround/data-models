@@ -65,7 +65,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-jscs');
   grunt.loadNpmTasks('grunt-mocha-test');
 
-  grunt.registerTask('pp', ['jshint', 'jscs', 'buddyjs']);
+  grunt.registerTask('pp', ['jshint', 'jscs:src', 'buddyjs']);
   grunt.registerTask('test', ['pp', 'mochaTest:unitTest']);
 
   grunt.registerTask('buildTestCode', ['pp', 'mochaTest:unitTest']);
