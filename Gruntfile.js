@@ -2,14 +2,14 @@
 // Assume that grunt-cli has been installed at the npm -g level, so can run grunt
 //
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
   'use strict';
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
     buddyjs: {
-      src: ['lib/*.js', 'test/*.js'],
+      src: ['lib/**/*.js', 'test/**/*.js'],
       options: {
         ignore: [0, 1, 2]
       }
@@ -17,7 +17,7 @@ module.exports = function(grunt) {
 
     jshint: {
       all: ['Gruntfile.js',
-        'lib/*.js', 'test/*.js'],
+        'lib/**/*.js', 'test/**/*.js'],
       options: {
         predef: ['describe', 'it', 'before', 'after'],
         exported: ['should'],
@@ -27,13 +27,14 @@ module.exports = function(grunt) {
         undef: true,
         unused: true,
         eqeqeq: true,
-        strict: true
+        strict: true,
+        esversion: 6
       }
     },
 
     jscs: {
       check:{
-        src: ['lib/*.js', 'lib', 'test/*.js'],
+        src: ['lib/**/*.js', 'lib', 'test/**/*.js'],
         options: {
           preset: 'airbnb',
           disallowMultipleVarDecl: false,
@@ -41,7 +42,7 @@ module.exports = function(grunt) {
         }
       },
       fix: {
-        src: ['lib/*.js', 'lib', 'test/*.js'],
+        src: ['lib/**/*.js', 'lib', 'test/**/*.js'],
         options:{
           preset: 'airbnb',
           disallowMultipleVarDecl: false,
@@ -56,7 +57,7 @@ module.exports = function(grunt) {
         options: {
           reporter: 'spec'
         },
-        src: ['test/*.js']
+        src: ['test/**/*.js']
       }
     }
 
