@@ -16,7 +16,7 @@ describe('JSONLD Context utils tests', function () {
 
     it('1.1 should read PNDataModel context', function () {
 
-      var getContextPromise = contextUtils.getContextPromise(PNDataModel.ID);
+      var getContextPromise = contextUtils.promises.getContext(PNDataModel.ID);
 
       // return promise from catch as mocha will check if ok or error
       return getContextPromise.then(
@@ -34,18 +34,17 @@ describe('JSONLD Context utils tests', function () {
 
   describe('2 Read context, and use in extracting information from a PnDataModel jsonld graph', function () {
 
-    it('2.1 should read PNDataModel context', function () {
-
-      var getContextPromise = contextUtils.getContextPromise(PNDataModel.ID),
-          testObject;
-
-      testObject = {
-        '@id': 'http://id.webshield.io/request/acme/com#1',
+    var testObject = {
+        '@id': 'http://id.webshield.io/request/acme/com#21',
         '@type': [PN_T.CreateCollection] };
-      testObject[PN_P.domain] = { '@id': 'http://id.pn.webshield.io/domain#1' };
-      testObject[PN_P.dataModel] = { '@id': 'http://id.pn.webshield.io/datamodel#1' };
+    testObject[PN_P.domain] = { '@id': 'http://id.pn.webshield.io/domain#1' };
+    testObject[PN_P.dataModel] = { '@id': 'http://id.pn.webshield.io/datamodel#1' };
 
-      console.log('testObject:%j', testObject);
+    it('2.1 should findObject in the PNDataModel object', function () {
+
+      var getContextPromise = contextUtils.promises.getContext(PNDataModel.ID);
+
+      //console.log('testObject:%j', testObject);
 
       // return promise from catch as mocha will check if ok or error
       return getContextPromise.then(
@@ -53,26 +52,63 @@ describe('JSONLD Context utils tests', function () {
           var findObjectPromise;
           assert(context, util.format('then - no context read for datamodel:%s - context:%j', PNDataModel.ID, context));
 
-          findObjectPromise = jsonldUtils.findObjectsPromise(
+          findObjectPromise = jsonldUtils.promises.findObjects(
                                           testObject,
                                           PN_T.CreateCollection,
                                           new Map().set('@context', context));
 
-          findObjectPromise.then(
+          // return the promise from the then so mocha can check the results
+          return findObjectPromise.then(
             function (result) {
-              console.log('result:%j', result);
+              assert(result, 'did not find object?');
+              result.should.have.property('@id', testObject['@id']);
             },
 
-            function (reason) {
-              console.log('reason:%j', reason);
+            function (err) {
+              throw new Error(util.format('2.1 test failed in findObject: %j', err));
             }
           );
         },
 
-        function (err) {
-          throw new Error(err);
+        function (err) { // err on getContextPromise
+          throw new Error(util.format('2.1 test failed in getContext: %j', err));
         }
       );
-    }); // 1.1
-  }); // describe 1
+    }); // 2.1
+
+    it('2.2 should NOT findObject in the PNDataModel object', function () {
+
+      var getContextPromise = contextUtils.promises.getContext(PNDataModel.ID);
+
+      //console.log('testObject:%j', testObject);
+
+      // return promise from catch as mocha will check if ok or error
+      return getContextPromise.then(
+        function (context) {
+          var findObjectPromise;
+          assert(context, util.format('then - no context read for datamodel:%s - context:%j', PNDataModel.ID, context));
+
+          findObjectPromise = jsonldUtils.promises.findObjects(
+                                          testObject,
+                                          'http://bogus',
+                                          new Map().set('@context', context));
+
+          // return the promise from the then so mocha can check the results
+          return findObjectPromise.then(
+            function (result) {
+              assert(!result, 'should did not find object?');
+            },
+
+            function (err) {
+              throw new Error(util.format('2.2 test failed in findObject: %j', err));
+            }
+          );
+        },
+
+        function (err) { // err on getContextPromise
+          throw new Error(util.format('2.2 test failed in getContext: %j', err));
+        }
+      );
+    }); // 2.3
+  }); // describe 2
 });
