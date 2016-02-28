@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/niceoneallround/data-models#readme",
   "engines": {
-    "node": ">=4.0.x"
+    "node": ">=5.x.x"
   },
   "dependencies": {
     "jsonld-utils": "git://github.com/niceoneallround/jsonld-utils.git",

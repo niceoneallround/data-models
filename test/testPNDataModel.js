@@ -61,4 +61,21 @@ describe('PNDataModel tests', function () {
     }); // 1.3
 
   }); // describe 1
+
+  describe('2 test id creation', function () {
+
+    it('2.1 test create dataset id', function () {
+
+      var dataModelId = 'https://testpn.schema.webshield.io',
+          datasetId;
+
+      datasetId = PNDataModel.ids.createDatasetId(dataModelId);
+
+      assert(datasetId, 'no datasetId returned');
+
+      datasetId.should.be.equal('https://pn.id.webshield.io/datasets/io/webshield/schema/testpn');
+
+    }); // 2.1
+
+  }); // describe 1
 });
