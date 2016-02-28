@@ -15,7 +15,7 @@ describe('PNDataModel tests', function () {
 
     testObject = {};
     testObject['@id'] = 'http://id.webshield.io/test#1';
-    testObject['@type'] = PN_T.CreateCollection;
+    testObject['@type'] = PN_T.CreateDataset;
     testObject[PN_P.domain] = 'http://id.webshield.io/domain/io/webshield#1';
     data.push(testObject);
 
@@ -27,7 +27,7 @@ describe('PNDataModel tests', function () {
 
     it('1.1 test find the object', function () {
 
-      var findObjectPromise = PNDataModel.promises.findObjects(data, PN_T.CreateCollection);
+      var findObjectPromise = PNDataModel.promises.findObjects(data, PN_T.CreateDataset);
 
       // let mocha deal with all unexpected errors
       return findObjectPromise.then(

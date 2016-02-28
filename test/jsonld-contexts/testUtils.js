@@ -36,7 +36,7 @@ describe('JSONLD Context utils tests', function () {
 
     var testObject = {
         '@id': 'http://id.webshield.io/request/acme/com#21',
-        '@type': [PN_T.CreateCollection] };
+        '@type': [PN_T.CreateDataset] };
     testObject[PN_P.domain] = { '@id': 'http://id.pn.webshield.io/domain#1' };
     testObject[PN_P.dataModel] = { '@id': 'http://id.pn.webshield.io/datamodel#1' };
 
@@ -54,7 +54,7 @@ describe('JSONLD Context utils tests', function () {
 
           findObjectPromise = jsonldUtils.promises.findObjects(
                                           testObject,
-                                          PN_T.CreateCollection,
+                                          PN_T.CreateDataset,
                                           new Map().set('@context', context));
 
           // return the promise from the then so mocha can check the results

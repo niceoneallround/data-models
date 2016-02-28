@@ -22,7 +22,6 @@
     "AuditRecord":                    "api_t:AuditRecord",
     "AuditRecordRef":                 "api_t:AuditRecordRef",
     "ClearText":                      "api_t:ClearText",
-    "CreateCollection":               "api_t:CreateCollection",
     "CreateDataset":                  "api_t:CreateDataset",
     "CommandPolicy":                  "api_t:CommandPolicy",
     "Dataset":                        "api_t:Dataset",
