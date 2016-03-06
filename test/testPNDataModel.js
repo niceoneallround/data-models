@@ -77,5 +77,18 @@ describe('PNDataModel tests', function () {
 
     }); // 2.1
 
+    it('2.2 test create request id', function () {
+
+      var hostname = 'pn.acme.com',
+          id = 23, rqId;
+
+      rqId = PNDataModel.ids.createRequestId(hostname, id);
+
+      assert(rqId, 'no rqId returned');
+
+      rqId.should.be.equal('https://pn.id.webshield.io/requests/com/acme/pn#23');
+
+    }); // 2.1
+
   }); // describe 1
 });
