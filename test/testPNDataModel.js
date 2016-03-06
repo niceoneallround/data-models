@@ -65,30 +65,31 @@ describe('PNDataModel tests', function () {
   describe('2 test id creation', function () {
 
     it('2.1 test create dataset id', function () {
-
       var dataModelId = 'https://testpn.schema.webshield.io',
           datasetId;
 
       datasetId = PNDataModel.ids.createDatasetId(dataModelId);
-
       assert(datasetId, 'no datasetId returned');
-
       datasetId.should.be.equal('https://pn.id.webshield.io/datasets/io/webshield/schema/testpn');
-
     }); // 2.1
 
     it('2.2 test create request id', function () {
-
       var hostname = 'pn.acme.com',
-          id = 23, rqId;
+          id = 22, rqId;
 
       rqId = PNDataModel.ids.createRequestId(hostname, id);
-
       assert(rqId, 'no rqId returned');
+      rqId.should.be.equal('https://pn.id.webshield.io/requests/com/acme/pn#22');
+    }); // 2.2
 
-      rqId.should.be.equal('https://pn.id.webshield.io/requests/com/acme/pn#23');
+    it('2.3 test create provision id', function () {
+      var hostname = 'ps.svr.webshield.io',
+          id = 23, pvId;
 
-    }); // 2.1
+      pvId = PNDataModel.ids.createProvisionId(hostname, id);
+      assert(pvId, 'no pvId returned');
+      pvId.should.be.equal('https://pn.id.webshield.io/provisions/io/webshield/svr/ps#23');
+    }); // 2.2
 
-  }); // describe 1
+  }); // describe 2
 });
