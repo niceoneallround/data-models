@@ -89,7 +89,16 @@ describe('PNDataModel tests', function () {
       pvId = PNDataModel.ids.createProvisionId(hostname, id);
       assert(pvId, 'no pvId returned');
       pvId.should.be.equal('https://pn.id.webshield.io/provisions/io/webshield/svr/ps#23');
-    }); // 2.2
+    }); // 2.3
+
+    it('2.4 test create privacy pipe id', function () {
+      var hostname = 'ps.svr.webshield.io',
+          id = 24, pvId;
+
+      pvId = PNDataModel.ids.createPrivacyPipeId(hostname, id);
+      assert(pvId, 'no pvId returned');
+      pvId.should.be.equal('https://pn.id.webshield.io/privacy_pipe/io/webshield/svr/ps#24');
+    }); // 2.3
 
   }); // describe 2
 });
