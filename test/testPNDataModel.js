@@ -98,7 +98,15 @@ describe('PNDataModel tests', function () {
       pvId = PNDataModel.ids.createPrivacyPipeId(hostname, id);
       assert(pvId, 'no pvId returned');
       pvId.should.be.equal('https://pn.id.webshield.io/privacy_pipe/io/webshield/svr/ps#24');
-    }); // 2.3
+    }); // 2.4
+
+    it('2.5 test datamodel id', function () {
+      var hostname = 'aetna.com', id;
+
+      id = PNDataModel.ids.createDataModelId(hostname);
+      assert(id, 'no id returned');
+      id.should.be.equal('https://aetna.com.schema.webshield.io');
+    }); // 2.5
 
   }); // describe 2
 });
