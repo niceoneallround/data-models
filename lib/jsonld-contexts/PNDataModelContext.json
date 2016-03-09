@@ -43,6 +43,7 @@
     "PrivacyPolicy":                  "api_t:PrivacyPolicy",
     "PrivacySchema":                  "api_t:PrivacySchema",
     "Query":                          "api_t:Query",
+    "QueryResult":                    "api_t:QueryResult",
     "QueryRestriction":               "api_t:QueryRestriction",
     "ReferenceSource":                "api_t:ReferenceSource",
     "SIM":                            "api_t:SIM",

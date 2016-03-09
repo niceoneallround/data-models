@@ -100,13 +100,22 @@ describe('PNDataModel tests', function () {
       pvId.should.be.equal('https://pn.id.webshield.io/privacy_pipe/io/webshield/svr/ps#24');
     }); // 2.4
 
-    it('2.5 test datamodel id', function () {
+    it('2.5 test create datamodel id', function () {
       var hostname = 'aetna.com', id;
 
       id = PNDataModel.ids.createDataModelId(hostname);
       assert(id, 'no id returned');
       id.should.be.equal('https://aetna.com.schema.webshield.io');
     }); // 2.5
+
+    it('2.6 test create query result id', function () {
+      var hostname = 'ps.svr.webshield.io',
+          id = 24, pvId;
+
+      pvId = PNDataModel.ids.createQueryResultId(hostname, id);
+      assert(pvId, 'no pvId returned');
+      pvId.should.be.equal('https://pn.id.webshield.io/query_result/io/webshield/svr/ps#24');
+    }); // 2.6
 
   }); // describe 2
 });
