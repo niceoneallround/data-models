@@ -38,7 +38,8 @@ module.exports = function (grunt) {
         options: {
           preset: 'airbnb',
           disallowMultipleVarDecl: false,
-          requireTrailingComma: false
+          requireTrailingComma: false,
+          maximumLineLength: 255
         }
       },
       fix: {
@@ -47,7 +48,8 @@ module.exports = function (grunt) {
           preset: 'airbnb',
           disallowMultipleVarDecl: false,
           requireTrailingComma: false,
-          fix: true
+          fix: true,
+          maximumLineLength: 255
         }
       }
     },
