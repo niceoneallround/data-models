@@ -47,7 +47,7 @@
     "PrivacySchema":                  "api_t:PrivacySchema",
     "ProvisionedPrivacyStep":         "api_t:ProvisionedPrivacyStep",
     "ProvisionedQuery":               "api_t:ProvisionedQuery",
-    "ProvisionedStore":               "api_t:ProvisionedStore",  
+    "ProvisionedStore":               "api_t:ProvisionedStore",
     "Query":                          "api_t:Query",
     "QueryResult":                    "api_t:QueryResult",
     "QueryRestriction":               "api_t:QueryRestriction",
@@ -61,6 +61,7 @@
     "TrustModel":                     "api_t:TrustModel",
     "Upload2SIM":                     "api_t:Upload2SIM",
     "UploadResultItem":               "api_t:UploadResultItem",
+    "URL":                            "api_t:URL",
     "x509-cn":                        "api_t:x509-cn",
 
     "RSP":                            "api_t:RSP",
