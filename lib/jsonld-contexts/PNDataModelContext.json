@@ -72,6 +72,7 @@
 
     "RSP":                            "api_t:RSP",
 
+    "action":                         "pn_p:action",
     "access_policy":                  "api_p:access_policy",
     "audit_log_ref":                  "api_p:audit_log_ref",
     "audit_record":                   "api_p:audit_record",

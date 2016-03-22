@@ -104,6 +104,7 @@ describe('Test Privacy PN Data Models', function () {
       props = {};
       props.id = id;
       props.patag = patag;
+      props.action = PN_T.Obfuscate;
 
       props.privacy_schema = jsonldUtils.createBlankNode({ '@type': PN_T.SchemaItem });
       props.privacy_schema[PN_P.propType] = 'http://test.webshield.io/type#bogus';
@@ -114,6 +115,7 @@ describe('Test Privacy PN Data Models', function () {
       paction.should.have.property('@id', id);
       assert(jsonldUtils.isType(paction, PN_T.PrivacyAction), util.format('%j should be a %s', paction, PN_T.PrivacyAction));
       paction.should.have.property(PN_P.patag, patag);
+      paction.should.have.property(PN_P.action, PN_T.Obfuscate);
       paction.should.have.property(PN_P.privacySchema);
       paction[PN_P.privacySchema].length.should.be.equal(1);
       paction[PN_P.privacySchema].forEach(function (item) {
@@ -133,6 +135,8 @@ describe('Test Privacy PN Data Models', function () {
       props.id = id;
       props.patag = patag;
 
+      props.action = PN_T.DeObfuscate;
+
       props.privacy_schema = jsonldUtils.createBlankNode({ '@type': PN_T.SchemaItem });
       props.privacy_schema[PN_P.propType] = ['http://test.webshield.io/type#bogus'];
       props.privacy_schema[PN_P.propName] = ['http://test.webshield.io/prop#bogus_prop'];
@@ -142,6 +146,7 @@ describe('Test Privacy PN Data Models', function () {
       paction.should.have.property('@id', id);
       assert(jsonldUtils.isType(paction, PN_T.PrivacyAction), util.format('%j should be a %s', paction, PN_T.PrivacyAction));
       paction.should.have.property(PN_P.patag, patag);
+      paction.should.have.property(PN_P.action, PN_T.DeObfuscate);
       paction.should.have.property(PN_P.privacySchema);
       paction[PN_P.privacySchema].length.should.be.equal(1);
       paction[PN_P.privacySchema].forEach(function (item) {
