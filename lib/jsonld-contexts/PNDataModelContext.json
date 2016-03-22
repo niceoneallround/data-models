@@ -106,6 +106,7 @@
     "patag":                          "pn_p:patag",
     "pipe_id":                        "api_p:pipe_id",
     "policies":                       "api_p:policies",
+    "privacy_action":                 "pn_p:privacy_action",
     "properties":                     "api_p:properties",
     "prop_id":                        "api_p:prop_id",
     "prop_name_descs":                "api_p:prop_name_descs",

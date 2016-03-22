@@ -3,9 +3,9 @@
 var should = require('should'),
   assert = require('assert'),
   jsonldUtils = require('jsonld-utils/lib/jldUtils'),
-  PN = require('../lib/PNDataModel'),
-  PN_P = PN.PROPERTY,
-  PN_T = PN.TYPE,
+  PNDataModel = require('../lib/PNDataModel'),
+  PN_P = PNDataModel.PROPERTY,
+  PN_T = PNDataModel.TYPE,
   PPN = require('../lib/PrivacyPNDataModel'),
   PPNUtils = PPN.utils,
   util = require('util');
@@ -98,7 +98,7 @@ describe('Test Privacy PN Data Models', function () {
     it('4.1 should create when all prop options are passed in - type and prop are values', function () {
       var paction, patag, id, props;
 
-      id = PN.ids.createPrivacyActionId(hostname, '4_1_test');
+      id = PNDataModel.ids.createPrivacyActionId(hostname, '4_1_test');
       patag = PPNUtils.createPATAG(hostname, 'deadcows');
 
       props = {};
@@ -128,7 +128,7 @@ describe('Test Privacy PN Data Models', function () {
     it('4.2 should create when all prop options are passed in - type and prop are arrays', function () {
       var paction, patag, id, props;
 
-      id = PN.ids.createPrivacyActionId(hostname, '4_1_test');
+      id = PNDataModel.ids.createPrivacyActionId(hostname, '4_1_test');
       patag = PPNUtils.createPATAG(hostname, 'deadcows');
 
       props = {};
@@ -157,6 +157,31 @@ describe('Test Privacy PN Data Models', function () {
         item[PN_P.propName].length.should.be.equal(1);
       });
     }); // 4.2
+  }); // describe 4
+
+  describe('5 test Privacy Step', function () {
+
+    var hostname = 'pn.acme.com';
+
+    it('5.1 should create when all prop options are passed in - type and prop are values', function () {
+      var pstep, id, props;
+
+      id = PNDataModel.ids.createPrivacyStepId(hostname, '5_1_test');
+
+      props = {};
+      props.id = id;
+      props.client = PNDataModel.utils.createCNameValue('dummy.client.com');
+      props.next = PNDataModel.utils.createURLValue('https://dummy.client.com/mock');
+      props.privacyAction = { '@id': '_:dont_care', '@type': PN_T.PrivacyAction };
+
+      pstep = PPNUtils.createPrivacyStep(props);
+
+      pstep.should.have.property('@id', id);
+      assert(jsonldUtils.isType(pstep, PN_T.PrivacyStep), util.format('%j should be a %s', pstep, PN_T.PrivacyStep));
+      pstep.should.have.property(PN_P.client, props.client);
+      pstep.should.have.property(PN_P.next, props.next);
+      pstep.should.have.property(PN_P.privacyAction);
+    }); // 4.1
   }); // describe 4
 
 });

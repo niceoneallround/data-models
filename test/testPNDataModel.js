@@ -123,7 +123,7 @@ describe('PNDataModel tests', function () {
 
       pvId = PNDataModel.ids.createPrivacyStepId(hostname, id);
       assert(pvId, 'no pvId returned');
-      pvId.should.be.equal('https://pn.id.webshield.io/privacy_step/io/webshield/svr/ps#24');
+      pvId.should.be.equal('https://md.pn.id.webshield.io/privacy_step/io/webshield/svr/ps#24');
     }); // 2.7
 
     it('2.8 test create privacy action id', function () {
@@ -132,11 +132,11 @@ describe('PNDataModel tests', function () {
 
       pvId = PNDataModel.ids.createPrivacyActionId(hostname, id);
       assert(pvId, 'no pvId returned');
-      pvId.should.be.equal('https://pn.id.webshield.io/privacy_action/io/webshield/svr/ps#24');
+      pvId.should.be.equal('https://md.pn.id.webshield.io/privacy_action/io/webshield/svr/ps#24');
     }); // 2.8
   }); // describe 2
 
-  describe('3 test tag creation', function () {
+  describe('3 test tag utils', function () {
 
     it('3.1 test create tag', function () {
       var hostname = 'ps.svr.webshield.io', tagType = 'test_tag',
@@ -147,4 +147,25 @@ describe('PNDataModel tests', function () {
       tag.should.be.equal('https://pn.tag.webshield.io/test_tag/io/webshield/svr/ps#24');
     }); // 3.1
   }); // describe 3
+
+  describe('4 test utils', function () {
+
+    it('4.1 test create cname typed value', function () {
+      var hostname = 'ps.svr.webshield.io', tv;
+
+      tv = PNDataModel.utils.createCNameValue(hostname);
+      assert(tv, 'no typed value returned');
+      tv.should.have.property('@type', PN_T.X509CN);
+      tv.should.have.property('@value', hostname);
+    }); // 4.1
+
+    it('4.2 test create url typed value', function () {
+      var url = 'https://ps.svr.webshield.io/mock', tv;
+
+      tv = PNDataModel.utils.createURLValue(url);
+      assert(tv, 'no typed value returned');
+      tv.should.have.property('@type', PN_T.URL);
+      tv.should.have.property('@value', url);
+    }); // 4.2
+  }); // describe 4
 });
