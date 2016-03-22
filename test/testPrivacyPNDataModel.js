@@ -95,7 +95,7 @@ describe('Test Privacy PN Data Models', function () {
 
     var hostname = 'pn.acme.com';
 
-    it('4.1 should create from passed in props', function () {
+    it('4.1 should create when all prop options are passed in - type and prop are values', function () {
       var paction, patag, id, props;
 
       id = PN.ids.createPrivacyActionId(hostname, '4_1_test');
@@ -105,12 +105,53 @@ describe('Test Privacy PN Data Models', function () {
       props.id = id;
       props.patag = patag;
 
+      props.privacy_schema = jsonldUtils.createBlankNode({ '@type': PN_T.SchemaItem });
+      props.privacy_schema[PN_P.propType] = 'http://test.webshield.io/type#bogus';
+      props.privacy_schema[PN_P.propName] = 'http://test.webshield.io/prop#bogus_prop';
+
       paction = PPNUtils.createPrivacyAction(props);
 
       paction.should.have.property('@id', id);
       assert(jsonldUtils.isType(paction, PN_T.PrivacyAction), util.format('%j should be a %s', paction, PN_T.PrivacyAction));
       paction.should.have.property(PN_P.patag, patag);
-    });
-  }); // describe 1
+      paction.should.have.property(PN_P.privacySchema);
+      paction[PN_P.privacySchema].length.should.be.equal(1);
+      paction[PN_P.privacySchema].forEach(function (item) {
+        assert(jsonldUtils.isType(item, PN_T.SchemaItem), util.format('item:%j is not type:%s', item, PN_T.SchemaItem));
+        item.should.have.property(PN_P.propType, 'http://test.webshield.io/type#bogus');
+        item.should.have.property(PN_P.propName, 'http://test.webshield.io/prop#bogus_prop');
+      });
+    }); // 4.1
+
+    it('4.2 should create when all prop options are passed in - type and prop are arrays', function () {
+      var paction, patag, id, props;
+
+      id = PN.ids.createPrivacyActionId(hostname, '4_1_test');
+      patag = PPNUtils.createPATAG(hostname, 'deadcows');
+
+      props = {};
+      props.id = id;
+      props.patag = patag;
+
+      props.privacy_schema = jsonldUtils.createBlankNode({ '@type': PN_T.SchemaItem });
+      props.privacy_schema[PN_P.propType] = ['http://test.webshield.io/type#bogus'];
+      props.privacy_schema[PN_P.propName] = ['http://test.webshield.io/prop#bogus_prop'];
+
+      paction = PPNUtils.createPrivacyAction(props);
+
+      paction.should.have.property('@id', id);
+      assert(jsonldUtils.isType(paction, PN_T.PrivacyAction), util.format('%j should be a %s', paction, PN_T.PrivacyAction));
+      paction.should.have.property(PN_P.patag, patag);
+      paction.should.have.property(PN_P.privacySchema);
+      paction[PN_P.privacySchema].length.should.be.equal(1);
+      paction[PN_P.privacySchema].forEach(function (item) {
+        assert(jsonldUtils.isType(item, PN_T.SchemaItem), util.format('item:%j is not type:%s', item, PN_T.SchemaItem));
+        item.should.have.property(PN_P.propType);
+        item[PN_P.propType].length.should.be.equal(1);
+        item.should.have.property(PN_P.propName);
+        item[PN_P.propName].length.should.be.equal(1);
+      });
+    }); // 4.2
+  }); // describe 4
 
 });
