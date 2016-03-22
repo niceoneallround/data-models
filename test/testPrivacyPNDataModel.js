@@ -2,6 +2,10 @@
 
 var should = require('should'),
   assert = require('assert'),
+  jsonldUtils = require('jsonld-utils/lib/jldUtils'),
+  PN = require('../lib/PNDataModel'),
+  PN_P = PN.PROPERTY,
+  PN_T = PN.TYPE,
   PPN = require('../lib/PrivacyPNDataModel'),
   PPNUtils = PPN.utils,
   util = require('util');
@@ -12,23 +16,23 @@ describe('Test Privacy PN Data Models', function () {
   describe('1 test create PATAG', function () {
 
     it('1.1 should create in correct format', function () {
-      var tagValue = 'deadcows', patag;
+      var tagValue = 'deadcowsJWT', patag, hostname = 'pn.acme.com';
 
-      patag = PPNUtils.createPATAG(tagValue);
-      patag.should.be.equal('http://privacy.pn.schema.webshield.io/patag#deadcows');
+      patag = PPNUtils.createPATAG(hostname, tagValue);
+      patag.should.be.equal('https://pn.tag.webshield.io/patag/com/acme/pn#deadcowsJWT');
     });
   }); // describe 1
 
   describe('2 test create obfuscated typed value', function () {
 
-    it('2.1 should create with an array ', function () {
-      var props, pv, patag;
+    var patag = PPNUtils.createPATAG('pn.acme.com', 'test2');
 
-      patag = PPNUtils.createPATAG('test21');
+    it('2.1 should create with an array ', function () {
+      var props, pv;
 
       props = {};
       props.evalue = '23';
-      props.octx = [patag];
+      props.patag = [patag];
       pv = PPNUtils.createObfuscatedValue(props);
       assert(pv, util.format('no privacy value returned for props:%j', props));
 
@@ -39,14 +43,11 @@ describe('Test Privacy PN Data Models', function () {
 
     });
 
-    it('2.2 create with octx and instance', function () {
-      var props, pv, patag;
-
-      patag = PPNUtils.createPATAG('test22');
-
+    it('2.2 create with patag and instance', function () {
+      var props, pv;
       props = {};
       props.evalue = '56';
-      props.octx = patag;
+      props.patag = patag;
       pv = PPNUtils.createObfuscatedValue(props);
       assert(pv, util.format('no privacy value returned for props:%j', props));
 
@@ -57,7 +58,7 @@ describe('Test Privacy PN Data Models', function () {
 
   describe('3 isObfuscated tests', function () {
 
-    var patag = PPNUtils.createPATAG('test3');
+    var patag = PPNUtils.createPATAG('pn.acme.com', 'test3');
 
     it('3.1 array with just a non typed @value', function () {
       var t = [{ '@value': '23' }];
@@ -88,5 +89,28 @@ describe('Test Privacy PN Data Models', function () {
       var t = { '@type': 'type1', '@value': '23' };
       assert(!PPNUtils.isObfuscated(t), util.format('isObfuscted did not return false%j', t));
     });
-  }); // describe 2
+  }); // describe 3
+
+  describe('4 test Privacy Action', function () {
+
+    var hostname = 'pn.acme.com';
+
+    it('4.1 should create from passed in props', function () {
+      var paction, patag, id, props;
+
+      id = PN.ids.createPrivacyActionId(hostname, '4_1_test');
+      patag = PPNUtils.createPATAG(hostname, 'deadcows');
+
+      props = {};
+      props.id = id;
+      props.patag = patag;
+
+      paction = PPNUtils.createPrivacyAction(props);
+
+      paction.should.have.property('@id', id);
+      assert(jsonldUtils.isType(paction, PN_T.PrivacyAction), util.format('%j should be a %s', paction, PN_T.PrivacyAction));
+      paction.should.have.property(PN_P.patag, patag);
+    });
+  }); // describe 1
+
 });

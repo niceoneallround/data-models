@@ -117,5 +117,34 @@ describe('PNDataModel tests', function () {
       pvId.should.be.equal('https://pn.id.webshield.io/query_result/io/webshield/svr/ps#24');
     }); // 2.6
 
+    it('2.7 test create privacy step id', function () {
+      var hostname = 'ps.svr.webshield.io',
+          id = 24, pvId;
+
+      pvId = PNDataModel.ids.createPrivacyStepId(hostname, id);
+      assert(pvId, 'no pvId returned');
+      pvId.should.be.equal('https://pn.id.webshield.io/privacy_step/io/webshield/svr/ps#24');
+    }); // 2.7
+
+    it('2.8 test create privacy action id', function () {
+      var hostname = 'ps.svr.webshield.io',
+          id = 24, pvId;
+
+      pvId = PNDataModel.ids.createPrivacyActionId(hostname, id);
+      assert(pvId, 'no pvId returned');
+      pvId.should.be.equal('https://pn.id.webshield.io/privacy_action/io/webshield/svr/ps#24');
+    }); // 2.8
   }); // describe 2
+
+  describe('3 test tag creation', function () {
+
+    it('3.1 test create tag', function () {
+      var hostname = 'ps.svr.webshield.io', tagType = 'test_tag',
+          id = 24, tag;
+
+      tag = PNDataModel.tags.createTag(tagType, hostname, id);
+      assert(tag, 'no tag returned');
+      tag.should.be.equal('https://pn.tag.webshield.io/test_tag/io/webshield/svr/ps#24');
+    }); // 3.1
+  }); // describe 3
 });
