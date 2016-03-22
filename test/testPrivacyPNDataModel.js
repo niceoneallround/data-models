@@ -107,7 +107,7 @@ describe('Test Privacy PN Data Models', function () {
       props.action = PN_T.Obfuscate;
 
       props.privacy_schema = jsonldUtils.createBlankNode({ '@type': PN_T.SchemaItem });
-      props.privacy_schema[PN_P.propType] = 'http://test.webshield.io/type#bogus';
+      props.privacy_schema[PN_P.nodeType] = 'http://test.webshield.io/type#bogus';
       props.privacy_schema[PN_P.propName] = 'http://test.webshield.io/prop#bogus_prop';
 
       paction = PPNUtils.createPrivacyAction(props);
@@ -120,7 +120,7 @@ describe('Test Privacy PN Data Models', function () {
       paction[PN_P.privacySchema].length.should.be.equal(1);
       paction[PN_P.privacySchema].forEach(function (item) {
         assert(jsonldUtils.isType(item, PN_T.SchemaItem), util.format('item:%j is not type:%s', item, PN_T.SchemaItem));
-        item.should.have.property(PN_P.propType, 'http://test.webshield.io/type#bogus');
+        item.should.have.property(PN_P.nodeType, 'http://test.webshield.io/type#bogus');
         item.should.have.property(PN_P.propName, 'http://test.webshield.io/prop#bogus_prop');
       });
     }); // 4.1
@@ -138,7 +138,7 @@ describe('Test Privacy PN Data Models', function () {
       props.action = PN_T.DeObfuscate;
 
       props.privacy_schema = jsonldUtils.createBlankNode({ '@type': PN_T.SchemaItem });
-      props.privacy_schema[PN_P.propType] = ['http://test.webshield.io/type#bogus'];
+      props.privacy_schema[PN_P.nodeType] = ['http://test.webshield.io/type#bogus'];
       props.privacy_schema[PN_P.propName] = ['http://test.webshield.io/prop#bogus_prop'];
 
       paction = PPNUtils.createPrivacyAction(props);
@@ -151,8 +151,8 @@ describe('Test Privacy PN Data Models', function () {
       paction[PN_P.privacySchema].length.should.be.equal(1);
       paction[PN_P.privacySchema].forEach(function (item) {
         assert(jsonldUtils.isType(item, PN_T.SchemaItem), util.format('item:%j is not type:%s', item, PN_T.SchemaItem));
-        item.should.have.property(PN_P.propType);
-        item[PN_P.propType].length.should.be.equal(1);
+        item.should.have.property(PN_P.nodeType);
+        item[PN_P.nodeType].length.should.be.equal(1);
         item.should.have.property(PN_P.propName);
         item[PN_P.propName].length.should.be.equal(1);
       });
