@@ -106,9 +106,9 @@ describe('Test Privacy PN Data Models', function () {
       props.patag = patag;
       props.action = PN_T.Obfuscate;
 
-      props.privacy_schema = jsonldUtils.createBlankNode({ '@type': PN_T.SchemaItem });
-      props.privacy_schema[PN_P.nodeType] = 'http://test.webshield.io/type#bogus';
-      props.privacy_schema[PN_P.propName] = 'http://test.webshield.io/prop#bogus_prop';
+      props.privacySchema = jsonldUtils.createBlankNode({ '@type': PN_T.SchemaItem });
+      props.privacySchema[PN_P.nodeType] = 'http://test.webshield.io/type#bogus';
+      props.privacySchema[PN_P.propName] = 'http://test.webshield.io/prop#bogus_prop';
 
       paction = PPNUtils.createPrivacyAction(props);
 
@@ -137,9 +137,9 @@ describe('Test Privacy PN Data Models', function () {
 
       props.action = PN_T.DeObfuscate;
 
-      props.privacy_schema = jsonldUtils.createBlankNode({ '@type': PN_T.SchemaItem });
-      props.privacy_schema[PN_P.nodeType] = ['http://test.webshield.io/type#bogus'];
-      props.privacy_schema[PN_P.propName] = ['http://test.webshield.io/prop#bogus_prop'];
+      props.privacySchema = jsonldUtils.createBlankNode({ '@type': PN_T.SchemaItem });
+      props.privacySchema[PN_P.nodeType] = ['http://test.webshield.io/type#bogus'];
+      props.privacySchema[PN_P.propName] = ['http://test.webshield.io/prop#bogus_prop'];
 
       paction = PPNUtils.createPrivacyAction(props);
 
