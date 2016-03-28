@@ -134,6 +134,15 @@ describe('PNDataModel tests', function () {
       assert(pvId, 'no pvId returned');
       pvId.should.be.equal('https://md.pn.id.webshield.io/privacy_action/io/webshield/svr/ps#24');
     }); // 2.8
+
+    it('2.9 test create privacy algorithm id', function () {
+      var hostname = 'ps.svr.webshield.io',
+          id = 29, pvId;
+
+      pvId = PNDataModel.ids.createPrivacyAlgorithmId(hostname, id);
+      assert(pvId, 'no pvId returned');
+      pvId.should.be.equal('https://md.pn.id.webshield.io/privacy_algorithm/io/webshield/svr/ps#29');
+    }); // 2.9
   }); // describe 2
 
   describe('3 test tag utils', function () {
