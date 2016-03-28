@@ -35,6 +35,7 @@
     "DatasetEntry":                   "api_t:DatasetEntry",
     "DatasetEntity":                  "api_t:DatasetEntity",
     "DatasetEntityMetadata":          "api_t:DatasetEntityMetadata",
+    "Domain":                         "pn_t:Domain",
     "Entity":                         "api_t:Entity",
     "EntityRef":                      "api_t:EntityRef",
     "Error":                          "api_t:Error",
