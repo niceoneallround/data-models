@@ -97,7 +97,7 @@ describe('PNDataModel tests', function () {
 
       pvId = PNDataModel.ids.createPrivacyPipeId(hostname, id);
       assert(pvId, 'no pvId returned');
-      pvId.should.be.equal('https://pn.id.webshield.io/privacy_pipe/io/webshield/svr/ps#24');
+      pvId.should.be.equal('https://md.pn.id.webshield.io/privacy_pipe/io/webshield/svr/ps#24');
     }); // 2.4
 
     it('2.5 test create datamodel id', function () {
