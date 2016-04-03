@@ -2,9 +2,11 @@
 
 var should = require('should'),
   assert = require('assert'),
+  jsonldUtils = require('jsonld-utils/lib/jldUtils'),
   PNDataModel = require('../lib/PNDataModel'),
   PN_P = PNDataModel.PROPERTY,
-  PN_T = PNDataModel.TYPE;
+  PN_T = PNDataModel.TYPE,
+  util = require('util');
 
 describe('PNDataModel tests', function () {
   'use strict';
@@ -143,6 +145,15 @@ describe('PNDataModel tests', function () {
       assert(pvId, 'no pvId returned');
       pvId.should.be.equal('https://md.pn.id.webshield.io/privacy_algorithm/io/webshield/svr/ps#29');
     }); // 2.9
+
+    it('2.10 test create privacy algorithm id', function () {
+      var hostname = 'ps.svr.webshield.io',
+          id = 29, errId;
+
+      errId = PNDataModel.ids.createErrorId(hostname, id);
+      assert(errId, 'no errId returned');
+      errId.should.be.equal('https://pn.id.webshield.io/error/io/webshield/svr/ps#29');
+    }); // 2.10
   }); // describe 2
 
   describe('3 test tag utils', function () {
@@ -176,5 +187,39 @@ describe('PNDataModel tests', function () {
       tv.should.have.property('@type', PN_T.URL);
       tv.should.have.property('@value', url);
     }); // 4.2
-  }); // describe 4
+  }); // 4
+
+  describe('5 test errors', function () {
+
+    it('5.1 test create error', function () {
+      var hostname = 'ps.svr.webshield.io', props = {}, error;
+
+      props.id = PNDataModel.ids.createErrorId(hostname, 'test51');
+      props.httpStatus = '200';
+      props.error = jsonldUtils.createV({ type:PN_T.TypeError, value:'property had incorrect value' });
+
+      error = PNDataModel.errors.createError(props);
+      assert(error, 'no error returned');
+      error.should.have.property('@id');
+      error.should.have.property('@type');
+      assert(jsonldUtils.isType(error, PN_T.Error), util.format('%j is not of type:%s', error, PN_T.Error));
+      error.should.have.property(PN_P.httpStatus, '200');
+      error.should.have.property(PN_P.error);
+    }); // 5.1
+
+    it('5.2 test create type error', function () {
+      var hostname = 'ps.svr.webshield.io', props = {}, error;
+
+      props.id = PNDataModel.ids.createErrorId(hostname, 'test52');
+      props.errMsg = 'hello';
+
+      error = PNDataModel.errors.createTypeError(props);
+      assert(error, 'no error returned');
+      error.should.have.property('@id');
+      error.should.have.property('@type');
+      assert(jsonldUtils.isType(error, PN_T.Error), util.format('%j is not of type:%s', error, PN_T.Error));
+      error.should.have.property(PN_P.httpStatus, '400');
+      error.should.have.property(PN_P.error);
+    }); // 5.1
+  }); // describe 5
 });
