@@ -146,7 +146,7 @@ describe('PNDataModel tests', function () {
       pvId.should.be.equal('https://md.pn.id.webshield.io/privacy_algorithm/io/webshield/svr/ps#29');
     }); // 2.9
 
-    it('2.10 test create privacy algorithm id', function () {
+    it('2.10 test create error id', function () {
       var hostname = 'ps.svr.webshield.io',
           id = 29, errId;
 
@@ -189,7 +189,7 @@ describe('PNDataModel tests', function () {
     }); // 4.2
   }); // 4
 
-  describe('5 test errors', function () {
+  describe('5 test error utils', function () {
 
     it('5.1 test create error', function () {
       var hostname = 'ps.svr.webshield.io', props = {}, error;
@@ -222,4 +222,23 @@ describe('PNDataModel tests', function () {
       error.should.have.property(PN_P.error);
     }); // 5.1
   }); // describe 5
+
+  describe('6 Test Id to Param utils', function () {
+
+    it('6.1 test createMdParamFromMdId simple', function () {
+      var id = 'https://md.pn.id.webshield.io/privacy_algorithm/com/acme#value';
+      PNDataModel.ids.paramUtils.createMdParamFromMdId(id).should.be.equal('privacy_algorithm-com-acme--value');
+    }); //it 6.2
+
+    it('6.2 test createMdParamFromMdId value has dashes', function () {
+      var id = 'https://md.pn.id.webshield.io/privacy_algorithm/com/acme#value-1';
+      PNDataModel.ids.paramUtils.createMdParamFromMdId(id).should.be.equal('privacy_algorithm-com-acme--value-1');
+    }); //it 6.2
+
+    it('6.3 createParamFromDomain test value has dahes', function () {
+      var id = 'md.pn.id.webshield.io';
+      PNDataModel.ids.paramUtils.createParamFromDomain(id).should.be.equal('md-pn-id-webshield-io');
+    }); //it 6.2
+
+  }); // describe 1
 });
