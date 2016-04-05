@@ -220,7 +220,22 @@ describe('PNDataModel tests', function () {
       assert(jsonldUtils.isType(error, PN_T.Error), util.format('%j is not of type:%s', error, PN_T.Error));
       error.should.have.property(PN_P.httpStatus, '400');
       error.should.have.property(PN_P.error);
-    }); // 5.1
+    }); // 5.2
+
+    it('5.3 test create not found error', function () {
+      var hostname = 'ps.svr.webshield.io', props = {}, error;
+
+      props.id = PNDataModel.ids.createErrorId(hostname, 'test53');
+      props.errMsg = 'hello';
+
+      error = PNDataModel.errors.createNotFoundError(props);
+      assert(error, 'no error returned');
+      error.should.have.property('@id');
+      error.should.have.property('@type');
+      assert(jsonldUtils.isType(error, PN_T.Error), util.format('%j is not of type:%s', error, PN_T.Error));
+      error.should.have.property(PN_P.httpStatus, '404');
+      error.should.have.property(PN_P.error);
+    }); // 5.3
   }); // describe 5
 
   describe('6 Test Id to Param utils', function () {
