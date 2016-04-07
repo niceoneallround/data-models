@@ -106,6 +106,7 @@
     "o_value":                        "api_p:o_value",
     "patag":                          "pn_p:patag",
     "pipe_id":                        "api_p:pipe_id",
+    "post_data_url":                  "pn_p:post_data_url",
     "policies":                       "api_p:policies",
     "privacy_action":                 "pn_p:privacy_action",
     "privacy_step":                   "pn_p:privacy_step",
