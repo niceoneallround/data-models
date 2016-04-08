@@ -154,6 +154,25 @@ describe('PNDataModel tests', function () {
       assert(errId, 'no errId returned');
       errId.should.be.equal('https://pn.id.webshield.io/error/io/webshield/svr/ps#29');
     }); // 2.10
+
+    it('2.11 test create identity_syndication_algorithm id', function () {
+      var hostname = 'ps.svr.webshield.io',
+          v = 211, id;
+
+      id = PNDataModel.ids.createIdentitySyndicationAlgorithmId(hostname, v);
+      assert(id, 'no id returned');
+      id.should.be.equal('https://md.pn.id.webshield.io/identity_syndication_algorithm/io/webshield/svr/ps#211');
+    }); // 2.11
+
+    it('2.12 test create identity_syndication_job id', function () {
+      var hostname = 'ps.svr.webshield.io',
+          v = 212, id;
+
+      id = PNDataModel.ids.createIdentitySyndicationJobId(hostname, v);
+      assert(id, 'no id returned');
+      id.should.be.equal('https://md.pn.id.webshield.io/identity_syndication_job/io/webshield/svr/ps#212');
+    }); // 2.12
+
   }); // describe 2
 
   describe('3 test tag utils', function () {
