@@ -26,7 +26,6 @@
     "body":                           "api_t:body",
     "ClearText":                      "api_t:ClearText",
     "CreateDataset":                  "api_t:CreateDataset",
-    "CreateProvision":                "pn_t:CreateProvision",
     "CreateProvisionQuery":           "api_t:CreateProvisionQuery",
     "CreateProvisionStore":           "api_t:CreateProvisionStore",
     "CommandPolicy":                  "api_t:CommandPolicy",
