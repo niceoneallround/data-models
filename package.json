@@ -1,7 +1,7 @@
 {
   "name": "data-models",
-  "version": "1.0.33",
-  "description": "Contains PN data-model definitions",
+  "version": "1.0.34",
+  "description": "Contains the PN PNdata-model definitions",
   "main": "index.js",
   "scripts": {
     "test": "grunt test"

@@ -44,6 +44,7 @@
     "Metadata":                       "api_t:Metadata",
     "ObfuscationCriteria":            "api_t:ObfuscationCriteria",
     "ObfuscationService":             "api_t:ObfuscationService",
+    "PNDataModel":                    "pn_t:PNDataModel",
     "Policy":                         "api_t:Policy",
     "PrivacyAction":                  "pn_t:PrivacyAction",
     "PrivacyAlgorithm":               "api_t:PrivacyAlgorithm",
