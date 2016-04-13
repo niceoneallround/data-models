@@ -26,6 +26,7 @@ describe('JSONLD Context utils tests', function () {
         },
 
         function (err) {
+          assert(false, util.format('could not find context for %s with err:%s', PNDataModel.ID, err));
           throw new Error(err);
         }
       );
