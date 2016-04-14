@@ -180,7 +180,25 @@ describe('PNDataModel tests', function () {
       id = PNDataModel.ids.createReferenceSourceId(hostname, v);
       assert(id, 'no id returned');
       id.should.be.equal('https://md.pn.id.webshield.io/reference_source/io/webshield/svr/ps#212');
-    }); // 2.12
+    }); // 2.13
+
+    it('2.14 test create message id', function () {
+      var hostname = 'ps.svr.webshield.io',
+          v = 212, id;
+
+      id = PNDataModel.ids.createMessageId(hostname, v);
+      assert(id, 'no id returned');
+      id.should.be.equal('https://pn.id.webshield.io/message/io/webshield/svr/ps#212');
+    }); // 2.14
+
+    it('2.15 test create message id', function () {
+      var hostname = 'ps.svr.webshield.io',
+          v = 212, id;
+
+      id = PNDataModel.ids.createPrivacyContextId(hostname, v);
+      assert(id, 'no id returned');
+      id.should.be.equal('https://pn.id.webshield.io/privacy_context/io/webshield/svr/ps#212');
+    }); // 2.15
 
   }); // describe 2
 
