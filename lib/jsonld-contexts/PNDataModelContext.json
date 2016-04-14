@@ -133,6 +133,7 @@
     "result":                         "api_p:result",
     "schema":                         "api_p:schema",
     "sim_id":                         "api_p:sim_id",
+    "subject_type":                   "pn_p:subject_type",
     "source":                         "api_p:source",
     "source_id":                      "api_p:source_id",
     "source_id_desc":                 "api_p:source_id_desc",
