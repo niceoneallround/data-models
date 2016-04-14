@@ -224,6 +224,8 @@ describe('PNDataModel tests', function () {
       assert(jsonldUtils.isType(error, PN_T.Error), util.format('%j is not of type:%s', error, PN_T.Error));
       error.should.have.property(PN_P.httpStatus, '200');
       error.should.have.property(PN_P.error);
+
+      assert(PNDataModel.errors.isError(error), util.format('isError returned false for:%j', error));
     }); // 5.1
 
     it('5.2 test create type error', function () {
@@ -239,6 +241,8 @@ describe('PNDataModel tests', function () {
       assert(jsonldUtils.isType(error, PN_T.Error), util.format('%j is not of type:%s', error, PN_T.Error));
       error.should.have.property(PN_P.httpStatus, '400');
       error.should.have.property(PN_P.error);
+
+      assert(PNDataModel.errors.isError(error), util.format('isError returned false for:%j', error));
     }); // 5.2
 
     it('5.3 test create not found error', function () {
@@ -254,6 +258,8 @@ describe('PNDataModel tests', function () {
       assert(jsonldUtils.isType(error, PN_T.Error), util.format('%j is not of type:%s', error, PN_T.Error));
       error.should.have.property(PN_P.httpStatus, '404');
       error.should.have.property(PN_P.error);
+
+      assert(PNDataModel.errors.isError(error), util.format('isError returned false for:%j', error));
     }); // 5.3
   }); // describe 5
 
