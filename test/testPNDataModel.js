@@ -173,6 +173,15 @@ describe('PNDataModel tests', function () {
       id.should.be.equal('https://md.pn.id.webshield.io/identity_syndication_job/io/webshield/svr/ps#212');
     }); // 2.12
 
+    it('2.13 test create reference source id', function () {
+      var hostname = 'ps.svr.webshield.io',
+          v = 212, id;
+
+      id = PNDataModel.ids.createReferenceSourceId(hostname, v);
+      assert(id, 'no id returned');
+      id.should.be.equal('https://md.pn.id.webshield.io/reference_source/io/webshield/svr/ps#212');
+    }); // 2.12
+
   }); // describe 2
 
   describe('3 test tag utils', function () {
