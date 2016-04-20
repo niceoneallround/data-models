@@ -224,19 +224,19 @@ describe('Test Privacy PN Data Models', function () {
       props.hostname = 'fake.com';
       props.client = 'client.com';
       props.destination = 'https://destination.com/post';
-      props.privacyAlgorithmId = 'privacy_algorithm_id';
-      props.privacyNode = 'https://privacy_node/post';
-      props.action = PN_T.Obfuscate;
+      props.action = PN_T.DeObfuscate;
+      props.privacyContext = PPNUtils.createPrivacyContext({ hostname: 'fake.hostname' });
+      props.privacyContext[PN_P.privacyPipe] = 'https://fake.privacy_pipe';
 
       ppReq = PPNUtils.createPrivacyPipeResource(props);
       ppReq.should.have.property('@id');
       assert(jsonldUtils.isType(ppReq, PN_T.PrivacyPipe), util.format('%j is not a %s', ppReq, PN_T.PrivacyPipe));
 
-      ppReq.should.have.property(PN_P.action, PN_T.Obfuscate);
+      ppReq.should.have.property(PN_P.action, PN_T.DeObfuscate);
       ppReq.should.have.property(PN_P.client);
       ppReq.should.have.property(PN_P.destination);
-      ppReq.should.have.property(PN_P.privacyAlgorithm, props.privacyAlgorithmId);
-      ppReq.should.have.property(PN_P.privacyNode);
+      ppReq.should.not.have.property(PN_P.privacyAlgorithm);
+      ppReq.should.not.have.property(PN_P.privacyNode);
     }); //it 7.1
   }); // describe 7
 
