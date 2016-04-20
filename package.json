@@ -1,6 +1,6 @@
 {
   "name": "data-models",
-  "version": "1.0.42",
+  "version": "1.0.43",
   "description": "Contains the PN PNdata-model definitions",
   "main": "index.js",
   "scripts": {
@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "jsonld-utils": "git://github.com/niceoneallround/jsonld-utils.git",
+    "moment": "^2.13.0",
     "underscore": "^1.8.3"
   },
   "devDependencies": {

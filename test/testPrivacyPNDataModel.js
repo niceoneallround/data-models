@@ -181,7 +181,19 @@ describe('Test Privacy PN Data Models', function () {
       pstep.should.have.property(PN_P.client, props.client);
       pstep.should.have.property(PN_P.next, props.next);
       pstep.should.have.property(PN_P.privacyAction);
-    }); // 4.1
-  }); // describe 4
+    }); // 5.1
+  }); // describe 5
+
+  describe('6 Test Create privacyContext', function () {
+    it('6.1 create a pc', function () {
+      var props = {}, qry;
+
+      props.hostname = 'fake.com';
+
+      qry = PPNUtils.createPrivacyContext(props);
+      qry.should.have.property('@id');
+      assert(jsonldUtils.isType(qry, PN_T.PrivacyContext), util.format('%j is not a %s', qry, PN_T.PrivacyContext));
+    }); //it 6.1
+  }); // describe 6
 
 });
