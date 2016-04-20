@@ -196,4 +196,27 @@ describe('Test Privacy PN Data Models', function () {
     }); //it 6.1
   }); // describe 6
 
+  describe('7 Test Create Privacy Pipe Resource that can be passed to a request', function () {
+    it('7.1 create a pp', function () {
+      var props = {}, ppReq;
+
+      props.hostname = 'fake.com';
+      props.client = 'client.com';
+      props.destination = 'https://destination.com/post';
+      props.privacyAlgorithmId = 'privacy_algorithm_id';
+      props.privacyNode = 'https://privacy_node/post';
+      props.action = PN_T.Obfuscate;
+
+      ppReq = PPNUtils.createPrivacyPipeResource(props);
+      ppReq.should.have.property('@id');
+      assert(jsonldUtils.isType(ppReq, PN_T.PrivacyPipe), util.format('%j is not a %s', ppReq, PN_T.PrivacyPipe));
+
+      ppReq.should.have.property(PN_P.action, PN_T.Obfuscate);
+      ppReq.should.have.property(PN_P.client);
+      ppReq.should.have.property(PN_P.destination);
+      ppReq.should.have.property(PN_P.privacyAlgorithm, props.privacyAlgorithmId);
+      ppReq.should.have.property(PN_P.privacyNode);
+    }); //it 7.1
+  }); // describe 7
+
 });
