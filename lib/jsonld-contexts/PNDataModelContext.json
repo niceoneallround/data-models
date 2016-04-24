@@ -61,6 +61,7 @@
     "QueryResult":                    "api_t:QueryResult",
     "QueryRestriction":               "api_t:QueryRestriction",
     "ReferenceSource":                "api_t:ReferenceSource",
+    "RSSubjectQuery":                 "pn_t:RSSubjectQuery",
     "RSPSubjectQuery":                "pn_t:RSPSubjectQuery",
     "SubjectQuery":                   "api_t:SubjectQuery",
     "SubjectQueryResponse":           "pn_t:SubjectQueryResponse",
