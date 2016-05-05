@@ -290,7 +290,7 @@ describe('PNDataModel tests', function () {
     }); // 5.3
   }); // describe 5
 
-  describe('6 Test Id to Param utils', function () {
+  describe('6 Test Id to Param utils and the reverse', function () {
 
     it('6.1 test createMdParamFromMdId simple', function () {
       var id = 'https://md.pn.id.webshield.io/privacy_algorithm/com/acme#value';
@@ -305,6 +305,18 @@ describe('PNDataModel tests', function () {
     it('6.3 createParamFromDomain test value has dahes', function () {
       var id = 'md.pn.id.webshield.io';
       PNDataModel.ids.paramUtils.createParamFromDomain(id).should.be.equal('md-pn-id-webshield-io');
+    }); //it 6.3
+
+    it('6.4 createMdIdFromParam should produce an id from a param id', function () {
+      var param = 'privacy_algorithm-com-acme--value-1';
+      PNDataModel.ids.paramUtils.createMdIdFromParam(param).should.be.equal('https://md.pn.id.webshield.io/privacy_algorithm/com/acme#value-1');
+    }); //it 6.4
+
+    it('6.5 test create param and then reverse are the same', function () {
+      var id = 'https://md.pn.id.webshield.io/privacy_algorithm/com/acme#value-1',
+          paramId = PNDataModel.ids.paramUtils.createMdParamFromMdId(id);
+      paramId.should.be.equal('privacy_algorithm-com-acme--value-1');
+      PNDataModel.ids.paramUtils.createMdIdFromParam(paramId).should.be.equal(id);
     }); //it 6.2
 
   }); // describe 1
