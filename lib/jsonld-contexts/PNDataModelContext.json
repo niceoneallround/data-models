@@ -65,7 +65,7 @@
     "RSSubjectQueryResult":           "pn_t:RSSubjectQueryResult",
     "RSPSubjectQueryResult":          "pn_t:RSPSubjectQueryResult",
     "SubjectQuery":                   "api_t:SubjectQuery",
-    "SubjectQueryResponse":           "pn_t:SubjectQueryResponse",
+    "SubjectQueryResult":             "pn_t:SubjectQueryResult",
     "SubjectQueryRestriction":        "pn_t:SubjectQueryRestriction",
     "SchemaItem":                     "pn_t:SchemaItem",
     "SIM":                            "api_t:SIM",
