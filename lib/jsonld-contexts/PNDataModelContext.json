@@ -144,6 +144,7 @@
     "result_subject":                 "pn_p:result_subject",
     "schema":                         "api_p:schema",
     "sim_id":                         "api_p:sim_id",
+    "subject_query":                  "pn_p:subject_query",
     "subject_schema":                 "pn_p:subject_schema",
     "subject_type":                   "pn_p:subject_type",
     "source":                         "api_p:source",
