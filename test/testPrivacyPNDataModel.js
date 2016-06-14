@@ -71,7 +71,7 @@ describe('Test Privacy PN Data Models', function () {
     });
 
     it('3.3 array containing an obfuscated @type and @value in expanded format - i.e an array', function () {
-      var t = [{ '@type':patag, '@value': '23' }];
+      var t = [{ '@type': patag, '@value': '23' }];
       assert(PPNUtils.isObfuscated(t), util.format('isObfuscted did not return false%j', t));
     });
 
@@ -239,5 +239,26 @@ describe('Test Privacy PN Data Models', function () {
       ppReq.should.not.have.property(PN_P.privacyNode);
     }); //it 7.1
   }); // describe 7
+
+  describe('8 Provision Tests', function () {
+
+    it('8.1 createProvision should setup a provision', function () {
+      var pvRq, pRes;
+
+      pvRq = {};
+      pvRq['@id'] = PNDataModel.ids.createProvisionId('fake.test.webshield.io', '23');
+      pvRq['@type'] = PN_T.Provision;
+      pvRq[PN_P.privacyPipe] = 'http://fake.privacy.pipe.test.webshield.io/fake';
+      pvRq[PN_P.provisionedMetadata] = { dummy: 'do not care' };
+
+      // create provision from request
+      pRes = PPNUtils.createProvision('fake.test.webshield.io', pvRq);
+      pRes.should.have.property('@id');
+      assert(jsonldUtils.isType(pRes, PN_T.Provision), util.format('%j is not a %s', pRes, PN_T.Provision));
+      pRes.should.have.property(PN_P.privacyPipe, pvRq[PN_P.privacyPipe]);
+      pRes.should.have.property(PN_P.provisionedMetadata);
+
+    }); //it 1.1
+  }); // describe 1
 
 });
