@@ -243,13 +243,16 @@ describe('Test Privacy PN Data Models', function () {
   describe('8 Provision Tests', function () {
 
     it('8.1 createProvision should setup a provision', function () {
-      var pvRq, pRes;
+      var pvRq, pRes, error;
 
       pvRq = {};
       pvRq['@id'] = PNDataModel.ids.createProvisionId('fake.test.webshield.io', '23');
       pvRq['@type'] = PN_T.Provision;
       pvRq[PN_P.privacyPipe] = 'http://fake.privacy.pipe.test.webshield.io/fake';
       pvRq[PN_P.provisionedMetadata] = { dummy: 'do not care' };
+
+      error =  PPNUtils.verifyProvision(pvRq, 'fake.test.webshield.io');
+      assert(!error, util.format('Provision should have been valid:%j', error));
 
       // create provision from request
       pRes = PPNUtils.createProvision('fake.test.webshield.io', pvRq);
