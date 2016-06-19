@@ -319,5 +319,17 @@ describe('PNDataModel tests', function () {
       PNDataModel.ids.paramUtils.createMdIdFromParam(paramId).should.be.equal(id);
     }); //it 6.2
 
+    describe('7 Test Domain Helpers', function () {
+
+      it('7.1 should create a valid domainRequest', function () {
+        var domainReq, props = {};
+
+        props.id = 'http://fake.domain';
+        props.datamodel = 'http://fake-datamodel';
+        domainReq = PNDataModel.model.utils.createDomainRequest(props);
+
+      }); //it 7.1
+    });
+
   }); // describe 1
 });
