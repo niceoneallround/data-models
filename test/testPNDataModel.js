@@ -324,7 +324,7 @@ describe('PNDataModel tests', function () {
       it('7.1 should create a valid domainRequest', function () {
         var domainReq, props = {};
 
-        props.id = 'http://fake.domain';
+        props.name = 'fake.domain';
         props.datamodel = 'http://fake-datamodel';
         domainReq = PNDataModel.model.utils.createDomainRequest(props);
 
