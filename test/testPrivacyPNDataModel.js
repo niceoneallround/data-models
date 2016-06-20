@@ -183,7 +183,7 @@ describe('Test Privacy PN Data Models', function () {
       pstep.should.have.property(PN_P.privacyAction);
     }); // 5.1
 
-    it('5.1 should create when no privacy action', function () {
+    it('5.2 should create when no privacy action', function () {
       var pstep, id, props;
 
       id = PNDataModel.ids.createPrivacyStepId(hostname, '5_1_test');
@@ -200,7 +200,21 @@ describe('Test Privacy PN Data Models', function () {
       pstep.should.have.property(PN_P.client, props.client);
       pstep.should.have.property(PN_P.next, props.next);
       pstep.should.have.property(PN_P.privacyAction, []);
-    }); // 5.1
+    }); // 5.2
+
+    it('5.3 should create when passed no client, no next and hostname', function () {
+      var pstep, props;
+
+      props = {};
+      props.hostname = hostname;
+      pstep = PPNUtils.createNonInstantiatedPrivacyStep(props);
+
+      pstep.should.have.property('@id');
+      assert(jsonldUtils.isType(pstep, PN_T.PrivacyStep), util.format('%j should be a %s', pstep, PN_T.PrivacyStep));
+      pstep.should.not.have.property(PN_P.client);
+      pstep.should.not.have.property(PN_P.next);
+      pstep.should.have.property(PN_P.privacyAction, []);
+    }); // 5.3
   }); // describe 5
 
   describe('6 Test Create privacyContext', function () {
