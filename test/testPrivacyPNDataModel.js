@@ -182,6 +182,25 @@ describe('Test Privacy PN Data Models', function () {
       pstep.should.have.property(PN_P.next, props.next);
       pstep.should.have.property(PN_P.privacyAction);
     }); // 5.1
+
+    it('5.1 should create when no privacy action', function () {
+      var pstep, id, props;
+
+      id = PNDataModel.ids.createPrivacyStepId(hostname, '5_1_test');
+
+      props = {};
+      props.id = id;
+      props.client = PNDataModel.utils.createCNameValue('dummy.client.com');
+      props.next = PNDataModel.utils.createURLValue('https://dummy.client.com/mock');
+
+      pstep = PPNUtils.createPrivacyStep(props);
+
+      pstep.should.have.property('@id', id);
+      assert(jsonldUtils.isType(pstep, PN_T.PrivacyStep), util.format('%j should be a %s', pstep, PN_T.PrivacyStep));
+      pstep.should.have.property(PN_P.client, props.client);
+      pstep.should.have.property(PN_P.next, props.next);
+      pstep.should.have.property(PN_P.privacyAction, []);
+    }); // 5.1
   }); // describe 5
 
   describe('6 Test Create privacyContext', function () {
