@@ -200,6 +200,15 @@ describe('PNDataModel tests', function () {
       id.should.be.equal('https://pn.id.webshield.io/privacy_context/io/webshield/svr/ps#212');
     }); // 2.15
 
+    it('2.16 test create user data id', function () {
+      var hostname = 'acme.com',
+          v = 212, id;
+
+      id = PNDataModel.ids.createUserDataId(hostname, v);
+      assert(id, 'no id returned');
+      id.should.be.equal('https://id.webshield.io/com/acme#212');
+    }); // 2.15
+
   }); // describe 2
 
   describe('3 test tag utils', function () {
