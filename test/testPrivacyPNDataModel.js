@@ -294,7 +294,22 @@ describe('Test Privacy PN Data Models', function () {
       pRes.should.have.property(PN_P.privacyPipe, pvRq[PN_P.privacyPipe]);
       pRes.should.have.property(PN_P.provisionedMetadata);
 
-    }); //it 1.1
-  }); // describe 1
+    }); //it 8.1
+  }); // describe 8
+
+  describe('9 test Privacy Algorithm', function () {
+
+    it('9.1 should create when pass in id', function () {
+      var pa, props;
+
+      props = {};
+      props.id = 'dont-care1';
+      props.privacyStep = 'dont-care2';
+      pa = PPNUtils.createPrivacyAlgorithm(props);
+      pa.should.have.property('@id', 'dont-care1');
+      assert(jsonldUtils.isType(pa, PN_T.PrivacyAlgorithm), util.format('%j should be a %s', pa, PN_T.PrivacyAlgorithm));
+      pa.should.have.property(PN_P.privacyStep, ['dont-care2']);
+    }); // 9.1
+  }); // describe 9
 
 });
