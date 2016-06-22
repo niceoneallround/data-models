@@ -13,19 +13,23 @@ var should = require('should'),
 describe('Test Privacy PN Data Models', function () {
   'use strict';
 
-  describe('1 test create PATAG', function () {
+  describe('1 test create PATAG from pipe', function () {
 
-    it('1.1 should create in correct format', function () {
-      var tagValue = 'deadcowsJWT', patag, hostname = 'pn.acme.com';
+    it('1.1 should create with just pipe', function () {
+      var patag = PPNUtils.createPATAGFromPipe('http://fake.com/privacy_pipe');
+      patag.should.be.equal('http://fake.com/privacy_pipe');
+    });
 
-      patag = PPNUtils.createPATAG(hostname, tagValue);
-      patag.should.be.equal('https://pn.tag.webshield.io/patag/com/acme/pn#deadcowsJWT');
+    it('1.2 should create with pipe and value', function () {
+      var tagValue = 'deadCows', patag;
+      patag = PPNUtils.createPATAGFromPipe('http://fake.com/privacy_pipe', { value: tagValue });
+      patag.should.be.equal('http://fake.com/privacy_pipe#deadCows');
     });
   }); // describe 1
 
   describe('2 test create obfuscated typed value', function () {
 
-    var patag = PPNUtils.createPATAG('pn.acme.com', 'test2');
+    var patag = PPNUtils.createPATAGFromPipe('http://fake.com/privacy_pipe');
 
     it('2.1 should create with an array ', function () {
       var props, pv;
@@ -58,7 +62,7 @@ describe('Test Privacy PN Data Models', function () {
 
   describe('3 isObfuscated tests', function () {
 
-    var patag = PPNUtils.createPATAG('pn.acme.com', 'test3');
+    var patag = PPNUtils.createPATAGFromPipe('http://fake/privacy_pipe/12');
 
     it('3.1 array with just a non typed @value', function () {
       var t = [{ '@value': '23' }];
@@ -99,7 +103,7 @@ describe('Test Privacy PN Data Models', function () {
       var paction, patag, id, props;
 
       id = PNDataModel.ids.createPrivacyActionId(hostname, '4_1_test');
-      patag = PPNUtils.createPATAG(hostname, 'deadcows');
+      patag = PPNUtils.createPATAGFromPipe('http://fake.com/privacy_pipe');
 
       props = {};
       props.id = id;
@@ -130,8 +134,7 @@ describe('Test Privacy PN Data Models', function () {
       var paction, patag, id, props;
 
       id = PNDataModel.ids.createPrivacyActionId(hostname, '4_1_test');
-      patag = PPNUtils.createPATAG(hostname, 'deadcows');
-
+      patag = PPNUtils.createPATAGFromPipe('http://fake.com/privacy_pipe');
       props = {};
       props.id = id;
       props.patag = patag;
