@@ -115,6 +115,7 @@
     "obfuscation_criteria":           "api_p:obfuscation_criteria",
     "obfuscation_service":            "api_p:obfuscation_service",
     "o_value":                        "api_p:o_value",
+    "order_number":                   "pn_p:order_number",
     "patag":                          "pn_p:patag",
     "pipe_id":                        "api_p:pipe_id",
     "post_back_url":                  "pn_p:post_back_url",

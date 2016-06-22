@@ -105,6 +105,7 @@ describe('Test Privacy PN Data Models', function () {
       props.id = id;
       props.patag = patag;
       props.action = PN_T.Obfuscate;
+      props.orderNumber = 1;
 
       props.privacySchema = jsonldUtils.createBlankNode({ '@type': PN_T.SchemaItem });
       props.privacySchema[PN_P.nodeType] = 'http://test.webshield.io/type#bogus';
@@ -134,6 +135,7 @@ describe('Test Privacy PN Data Models', function () {
       props = {};
       props.id = id;
       props.patag = patag;
+      props.orderNumber = 1;
 
       props.action = PN_T.DeObfuscate;
 
@@ -170,6 +172,7 @@ describe('Test Privacy PN Data Models', function () {
 
       props = {};
       props.id = id;
+      props.orderNumber = 1;
       props.client = PNDataModel.utils.createCNameValue('dummy.client.com');
       props.next = PNDataModel.utils.createURLValue('https://dummy.client.com/mock');
       props.privacyAction = { '@id': '_:dont_care', '@type': PN_T.PrivacyAction };
@@ -192,6 +195,7 @@ describe('Test Privacy PN Data Models', function () {
       props.id = id;
       props.client = PNDataModel.utils.createCNameValue('dummy.client.com');
       props.next = PNDataModel.utils.createURLValue('https://dummy.client.com/mock');
+      props.orderNumber = 1;
 
       pstep = PPNUtils.createPrivacyStep(props);
 
@@ -207,6 +211,7 @@ describe('Test Privacy PN Data Models', function () {
 
       props = {};
       props.hostname = hostname;
+      props.orderNumber = 1;
       pstep = PPNUtils.createNonInstantiatedPrivacyStep(props);
 
       pstep.should.have.property('@id');
