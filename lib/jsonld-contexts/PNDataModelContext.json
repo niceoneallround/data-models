@@ -104,6 +104,7 @@
     "error":                          "api_p:error",
     "event_id":                       "api_p:event_id",
     "event_id_text":                  "api_p:event_id_text",
+    "externalEncryptMd":              "pn_p:external_encrypt_md",
     "homeURL":                        "api_p:homeURL",
     "identity":                       "api_p:identity",
     "identity_syndication_algorithm": "pn_p:identity_syndication_algorithm",

@@ -272,6 +272,10 @@ describe('Test Privacy PN Data Models', function () {
       ppReq.should.have.property(PN_P.destination);
       ppReq.should.have.property(PN_P.privacyAlgorithm, props.privacyAlgorithmId);
       ppReq.should.have.property(PN_P.privacyNode);
+
+      PPNUtils.addExternalEncryptMD2PrivacyPipeReq(ppReq, { '@id': 'fake' });
+      ppReq.should.have.property(PN_P.externalEncryptMd);
+
     }); //it 7.1
 
     it('7.2 create a pp for de-obfuscate', function () {
