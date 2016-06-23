@@ -16,14 +16,29 @@ describe('Test Privacy PN Data Models', function () {
   describe('1 test create PATAG from pipe', function () {
 
     it('1.1 should create with just pipe', function () {
-      var patag = PPNUtils.createPATAGFromPipe('http://fake.com/privacy_pipe');
-      patag.should.be.equal('http://fake.com/privacy_pipe');
+      var patag = PPNUtils.createPATAGFromPipe('http://fake.com/privacy_pipe#23');
+      patag.should.be.equal('http://fake.com/privacy_pipe#23');
     });
 
     it('1.2 should create with pipe and value', function () {
       var tagValue = 'deadCows', patag;
-      patag = PPNUtils.createPATAGFromPipe('http://fake.com/privacy_pipe', { value: tagValue });
-      patag.should.be.equal('http://fake.com/privacy_pipe#deadCows');
+      patag = PPNUtils.createPATAGFromPipe('http://fake.com/privacy_pipe#23', { value: tagValue });
+      patag.should.be.equal('http://fake.com/privacy_pipe#23?value=deadCows');
+    });
+
+    it('1.3 should create with pipe and external', function () {
+      var patag;
+      patag = PPNUtils.createPATAGFromPipe('http://fake.com/privacy_pipe#23', { external: 'deadcow_1' });
+      patag.should.be.equal('http://fake.com/privacy_pipe#23?external=deadcow_1');
+    });
+
+    it('1.4 should create with pipe and step, action, value', function () {
+      var patag;
+      patag = PPNUtils.createPATAGFromPipe('http://fake.com/privacy_pipe#23',
+                { privacyStepNumber: '1',
+                  privacyActionNumber: '2',
+                  value: '15' });
+      patag.should.be.equal('http://fake.com/privacy_pipe#23?privacyStepNumber=1&privacyActionNumber=2&value=15');
     });
   }); // describe 1
 
