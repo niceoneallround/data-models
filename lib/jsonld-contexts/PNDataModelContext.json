@@ -38,6 +38,7 @@
     "Entity":                         "api_t:Entity",
     "EntityRef":                      "api_t:EntityRef",
     "Error":                          "api_t:Error",
+    "ExternalEncryptMetadata":        "pn_t:ExternalEncryptMetadata",
     "IdentitySyndicationAlgorithm":   "pn_t:IdentitySyndicationAlgorithm",
     "IdentitySyndicationJob":         "pn_t:IdentitySyndicationJob",
     "Job":                            "api_t:Job",
