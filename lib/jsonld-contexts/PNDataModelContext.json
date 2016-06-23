@@ -110,6 +110,7 @@
     "issue_time":                     "api_p:issue_time",
     "items":                          "api_p:items",
     "job":                            "pn_p:job",
+    "jwt":                            "pn_p:jwt",
     "md":                             "api_p:md",
     "name":                           "api_p:name",
     "node_type":                      "pn_p:node_type",
