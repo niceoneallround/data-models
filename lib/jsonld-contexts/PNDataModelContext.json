@@ -68,6 +68,7 @@
     "SubjectQuery":                   "api_t:SubjectQuery",
     "SubjectQueryResult":             "pn_t:SubjectQueryResult",
     "SubjectQueryRestriction":        "pn_t:SubjectQueryRestriction",
+    "SubjectSyndicationRequest":      "pn_t:SubjectSyndicationRequest",
     "SchemaItem":                     "pn_t:SchemaItem",
     "SIM":                            "api_t:SIM",
     "SvcRequest":                     "api_t:SvcRequest",
