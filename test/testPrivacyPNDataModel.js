@@ -114,7 +114,7 @@ describe('Test Privacy PN Data Models', function () {
 
     var hostname = 'pn.acme.com';
 
-    it('4.1 should create when all prop options are passed in - type and prop are values', function () {
+    it('4.1 should support creation of an obfuscate, internal privacy action', function () {
       var paction, patag, id, props;
 
       id = PNDataModel.ids.createPrivacyActionId(hostname, '4_1_test');
@@ -125,6 +125,7 @@ describe('Test Privacy PN Data Models', function () {
       props.patag = patag;
       props.action = PN_T.Obfuscate;
       props.orderNumber = 1;
+      props.nodeType = PN_T.Internal;
 
       props.privacySchema = jsonldUtils.createBlankNode({ '@type': PN_T.SchemaItem });
       props.privacySchema[PN_P.nodeType] = 'http://test.webshield.io/type#bogus';
@@ -136,6 +137,7 @@ describe('Test Privacy PN Data Models', function () {
       assert(jsonldUtils.isType(paction, PN_T.PrivacyAction), util.format('%j should be a %s', paction, PN_T.PrivacyAction));
       paction.should.have.property(PN_P.patag, patag);
       paction.should.have.property(PN_P.action, PN_T.Obfuscate);
+      paction.should.have.property(PN_P.nodeType, PN_T.Internal);
       paction.should.have.property(PN_P.privacySchema);
       paction[PN_P.privacySchema].length.should.be.equal(1);
       paction[PN_P.privacySchema].forEach(function (item) {
@@ -145,7 +147,7 @@ describe('Test Privacy PN Data Models', function () {
       });
     }); // 4.1
 
-    it('4.2 should create when all prop options are passed in - type and prop are arrays', function () {
+    it('4.2 should support creation of a deobfuscate interal privacy action', function () {
       var paction, patag, id, props;
 
       id = PNDataModel.ids.createPrivacyActionId(hostname, '4_1_test');
@@ -167,6 +169,7 @@ describe('Test Privacy PN Data Models', function () {
       assert(jsonldUtils.isType(paction, PN_T.PrivacyAction), util.format('%j should be a %s', paction, PN_T.PrivacyAction));
       paction.should.have.property(PN_P.patag, patag);
       paction.should.have.property(PN_P.action, PN_T.DeObfuscate);
+      paction.should.have.property(PN_P.nodeType, PN_T.Internal); // this should have defaulted
       paction.should.have.property(PN_P.privacySchema);
       paction[PN_P.privacySchema].length.should.be.equal(1);
       paction[PN_P.privacySchema].forEach(function (item) {
@@ -177,13 +180,40 @@ describe('Test Privacy PN Data Models', function () {
         item[PN_P.propName].length.should.be.equal(1);
       });
     }); // 4.2
+
+    it('4.3 should support creation of an obfuscate, external privacy action', function () {
+      var paction, patag, id, props;
+
+      id = PNDataModel.ids.createPrivacyActionId(hostname, '4_3_test');
+      patag = PPNUtils.createPATAGFromPipe('http://fake.com/privacy_pipe');
+
+      props = {};
+      props.id = id;
+      props.patag = patag;
+      props.action = PN_T.Obfuscate;
+      props.orderNumber = 1;
+      props.nodeType = PN_T.External;
+      props.encryptionMetadata = { '@id': 'fake-md' };
+
+      // no privacy schema
+
+      paction = PPNUtils.createPrivacyAction(props);
+
+      paction.should.have.property('@id', id);
+      assert(jsonldUtils.isType(paction, PN_T.PrivacyAction), util.format('%j should be a %s', paction, PN_T.PrivacyAction));
+      paction.should.have.property(PN_P.patag, patag);
+      paction.should.have.property(PN_P.action, PN_T.Obfuscate);
+      paction.should.have.property(PN_P.nodeType, PN_T.External);
+      paction.should.have.property(PN_P.encryptionMetadata, props.encryptionMetadata);
+      paction.should.not.have.property(PN_P.privacySchema);
+    }); // 4.3
   }); // describe 4
 
   describe('5 test Privacy Step', function () {
 
     var hostname = 'pn.acme.com';
 
-    it('5.1 should create when all prop options are passed in - type and prop are values', function () {
+    it('5.1 should support creation of a privacy node step with an action', function () {
       var pstep, id, props;
 
       id = PNDataModel.ids.createPrivacyStepId(hostname, '5_1_test');
@@ -202,9 +232,11 @@ describe('Test Privacy PN Data Models', function () {
       pstep.should.have.property(PN_P.client, props.client);
       pstep.should.have.property(PN_P.next, props.next);
       pstep.should.have.property(PN_P.privacyAction);
+      pstep.should.have.property(PN_P.orderNumber, 1);
+      pstep.should.have.property(PN_P.nodeType, PN_T.PrivacyNode);
     }); // 5.1
 
-    it('5.2 should create when no privacy action', function () {
+    it('5.2 should suppot creation of privacy node step with no action', function () {
       var pstep, id, props;
 
       id = PNDataModel.ids.createPrivacyStepId(hostname, '5_1_test');
@@ -221,10 +253,12 @@ describe('Test Privacy PN Data Models', function () {
       assert(jsonldUtils.isType(pstep, PN_T.PrivacyStep), util.format('%j should be a %s', pstep, PN_T.PrivacyStep));
       pstep.should.have.property(PN_P.client, props.client);
       pstep.should.have.property(PN_P.next, props.next);
+      pstep.should.have.property(PN_P.orderNumber, 1);
+      pstep.should.have.property(PN_P.nodeType, PN_T.PrivacyNode);
       pstep.should.have.property(PN_P.privacyAction, []);
     }); // 5.2
 
-    it('5.3 should create when passed no client, no next and hostname', function () {
+    it('5.3 should support creation of a non instantiated step when no client, no next and hostname', function () {
       var pstep, props;
 
       props = {};
@@ -237,7 +271,34 @@ describe('Test Privacy PN Data Models', function () {
       pstep.should.not.have.property(PN_P.client);
       pstep.should.not.have.property(PN_P.next);
       pstep.should.have.property(PN_P.privacyAction, []);
+      pstep.should.have.property(PN_P.orderNumber, 1);
+      pstep.should.have.property(PN_P.nodeType, PN_T.PrivacyNode);
     }); // 5.3
+
+    it('5.4 should support creation of a Connetor step with an action', function () {
+      var pstep, id, props;
+
+      id = PNDataModel.ids.createPrivacyStepId(hostname, '5_1_test');
+
+      props = {};
+      props.id = id;
+      props.orderNumber = 1;
+      props.nodeType = PN_T.Connector;
+      props.client = PNDataModel.utils.createCNameValue('dummy.client.com');
+      props.next = PNDataModel.utils.createURLValue('https://dummy.client.com/mock');
+      props.privacyAction = { '@id': '_:dont_care', '@type': PN_T.PrivacyAction };
+
+      pstep = PPNUtils.createPrivacyStep(props);
+
+      pstep.should.have.property('@id', id);
+      assert(jsonldUtils.isType(pstep, PN_T.PrivacyStep), util.format('%j should be a %s', pstep, PN_T.PrivacyStep));
+      pstep.should.have.property(PN_P.client, props.client);
+      pstep.should.have.property(PN_P.next, props.next);
+      pstep.should.have.property(PN_P.privacyAction);
+      pstep.should.have.property(PN_P.orderNumber, 1);
+      pstep.should.have.property(PN_P.nodeType, PN_T.Connector);
+    }); // 5.1
+
   }); // describe 5
 
   describe('6 Test Create privacyContext', function () {
