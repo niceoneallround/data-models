@@ -152,6 +152,7 @@
     "subject_query":                  "pn_p:subject_query",
     "subject_schema":                 "pn_p:subject_schema",
     "subject_type":                   "pn_p:subject_type",
+    "subject_syndication_request":    "pn_p:subject_syndication_request",
     "source":                         "api_p:source",
     "source_id":                      "api_p:source_id",
     "source_id_desc":                 "api_p:source_id_desc",
