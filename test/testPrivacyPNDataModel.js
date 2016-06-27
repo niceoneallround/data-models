@@ -358,6 +358,29 @@ describe('Test Privacy PN Data Models', function () {
       ppReq.should.have.property(PN_P.destination);
       ppReq.should.not.have.property(PN_P.privacyAlgorithm);
       ppReq.should.not.have.property(PN_P.privacyNode);
+    }); //it 7.2
+
+    it('7.3 create a pp with no privacy node and external encrypt metadata', function () {
+      var props = {}, ppReq;
+
+      props.hostname = 'fake.com';
+      props.client = 'client.com';
+      props.destination = 'https://destination.com/post';
+      props.privacyAlgorithmId = 'privacy_algorithm_id';
+      props.action = PN_T.Obfuscate;
+      props.externalEncryptMd = { '@id': 'fake-me' };
+
+      ppReq = PPNUtils.createPrivacyPipeResource(props);
+      ppReq.should.have.property('@id');
+      assert(jsonldUtils.isType(ppReq, PN_T.PrivacyPipe), util.format('%j is not a %s', ppReq, PN_T.PrivacyPipe));
+
+      ppReq.should.have.property(PN_P.action, PN_T.Obfuscate);
+      ppReq.should.have.property(PN_P.client);
+      ppReq.should.have.property(PN_P.destination);
+      ppReq.should.have.property(PN_P.privacyAlgorithm, props.privacyAlgorithmId);
+      ppReq.should.not.have.property(PN_P.privacyNode);
+      ppReq.should.have.property(PN_P.externalEncryptMd);
+
     }); //it 7.1
   }); // describe 7
 
