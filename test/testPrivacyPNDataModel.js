@@ -347,7 +347,7 @@ describe('Test Privacy PN Data Models', function () {
       props.destination = 'https://destination.com/post';
       props.action = PN_T.DeObfuscate;
       props.privacyContext = PPNUtils.createPrivacyContext({ hostname: 'fake.hostname' });
-      props.privacyContext[PN_P.privacyPipe] = 'https://fake.privacy_pipe';
+      props.privacyContext[PN_P.subjectPrivacyPipe] = 'https://fake.privacy_pipe';
 
       ppReq = PPNUtils.createPrivacyPipeResource(props);
       ppReq.should.have.property('@id');
