@@ -4,6 +4,7 @@ var should = require('should'),
   ExperianCanonData = require('../lib/ExperianCanonData'),
   COMMON_CD = require('../lib/commonCanonData').CANON_DATA,
   ExperianPnDataModel = require('../lib/ExperianPnDataModel'),
+  EXP_CANON_DATA = require('../lib/ExperianCanoNData').CANON_DATA,
   EXPERIAN_P = ExperianPnDataModel.PROPERTY;
 
 describe('Experian Canon Data tests', function () {
@@ -14,7 +15,7 @@ describe('Experian Canon Data tests', function () {
     it('1.1 test create Bob', function () {
       var bob = ExperianCanonData.utils.createBob();
       bob.should.have.property(EXPERIAN_P.DOB, COMMON_CD.bob.BirthDate);
-      bob.should.have.property(EXPERIAN_P.SSN, COMMON_CD.bob.SSN);
+      bob.should.have.property(EXPERIAN_P.SSN, EXP_CANON_DATA.bob.SSN);
       ExperianCanonData.utils.checkBobStructure(bob);
     });
 
