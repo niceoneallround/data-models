@@ -251,7 +251,7 @@ describe('PNDataModel tests', function () {
 
       props.id = PNDataModel.ids.createErrorId(hostname, 'test51');
       props.httpStatus = '200';
-      props.error = jsonldUtils.createV({ type:PN_T.TypeError, value:'property had incorrect value' });
+      props.error = jsonldUtils.createV({ type: PN_T.TypeError, value: 'property had incorrect value' });
 
       error = PNDataModel.errors.createError(props);
       assert(error, 'no error returned');
@@ -293,6 +293,24 @@ describe('PNDataModel tests', function () {
       error.should.have.property('@type');
       assert(jsonldUtils.isType(error, PN_T.Error), util.format('%j is not of type:%s', error, PN_T.Error));
       error.should.have.property(PN_P.httpStatus, '404');
+      error.should.have.property(PN_P.error);
+
+      assert(PNDataModel.errors.isError(error), util.format('isError returned false for:%j', error));
+    }); // 5.3
+
+    it('5.4 test create invalid jwt', function () {
+      var hostname = 'ps.svr.webshield.io', props = {}, error;
+
+      props.id = PNDataModel.ids.createErrorId(hostname, 'test54');
+      props.jwtError = { error: 'jwtMalformed' };
+      props.type = 'a-type';
+
+      error = PNDataModel.errors.createInvalidJWTError(props);
+      assert(error, 'no error returned');
+      error.should.have.property('@id');
+      error.should.have.property('@type');
+      assert(jsonldUtils.isType(error, PN_T.Error), util.format('%j is not of type:%s', error, PN_T.Error));
+      error.should.have.property(PN_P.httpStatus, '400');
       error.should.have.property(PN_P.error);
 
       assert(PNDataModel.errors.isError(error), util.format('isError returned false for:%j', error));
