@@ -167,6 +167,7 @@
     "trust_criteria":                 "api_p:trust_criteria",
     "type_desc":                      "api_p:type_desc",
     "type_id":                        "api_p:type_id",
+    "user_tag":                       "pn_p:user_tag",
 
     "asAttributedBy":                 "prov:asAttributedBy",
     "wasAttributedTo":                "prov:wasAttributedTo",
