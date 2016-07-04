@@ -104,6 +104,8 @@
     "datasets":                       "api_p:datasets",
     "description":                    "api_p:description",
     "destination":                    "api_p:destination",
+    "encrypt_mechanism":              "pn_p:encrypt_mechanism",
+    "encrypt_key":                    "pn_p:encrypt_key",
     "entity_ref":                     "api_p:entity_ref",
     "error":                          "api_p:error",
     "event_id":                       "api_p:event_id",
