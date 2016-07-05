@@ -39,6 +39,7 @@
     "Entity":                         "api_t:Entity",
     "EntityRef":                      "api_t:EntityRef",
     "Error":                          "api_t:Error",
+    "EncryptMetadata":                "pn_t:EncryptMetadata",
     "ExternalEncryptMetadata":        "pn_t:ExternalEncryptMetadata",
     "External":                       "pn_t:External",
     "IdentitySyndicationAlgorithm":   "pn_t:IdentitySyndicationAlgorithm",
