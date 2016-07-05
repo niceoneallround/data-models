@@ -120,6 +120,7 @@
     "identity_syndication_algorithm": "pn_p:identity_syndication_algorithm",
     "issue_time":                     "api_p:issue_time",
     "items":                          "api_p:items",
+    "items2":                         "pn_p:items2",
     "job":                            "pn_p:job",
     "jwt":                            "pn_p:jwt",
     "md":                             "api_p:md",
