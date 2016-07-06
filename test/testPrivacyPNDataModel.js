@@ -423,4 +423,21 @@ describe('Test Privacy PN Data Models', function () {
     }); // 9.1
   }); // describe 9
 
+  describe('10 test Encrypt Metadata', function () {
+
+    it('10.1 should create ok', function () {
+      var md, props;
+
+      props = {};
+      props.domainName = 'abc.com';
+      props.mType = 'AES_256';
+      props.mDomainName = 'ionic.com';
+      md = PPNUtils.createEncryptMetadata(props);
+      md.should.have.property('@id');
+      assert(jsonldUtils.isType(md, PN_T.EncryptMetadata), util.format('%j should be a %s', md, PN_T.EncryptMetadata));
+      assert(jsonldUtils.isType(md, PN_T.Metadata), util.format('%j should be a %s', md, PN_T.Metadata));
+      md.should.have.property(PN_P.encryptMechanism, 'https://md.pn.id.webshield.io/encrypt_mechanism/com/ionic#AES_256');
+    }); // 10.1
+  }); // describe 10
+
 });
