@@ -37,5 +37,10 @@ describe('Experian Canon Data tests', function () {
       ExperianCanonData.utils.checkRichStructure(a);
     });
 
+    it('1.4 test create Roger', function () {
+      var a = ExperianCanonData.utils.createRoger();
+      ExperianCanonData.utils.checkRogerStructure(a);
+    });
+
   }); // describe 1
 });

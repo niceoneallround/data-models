@@ -43,5 +43,10 @@ describe('Aetna Canon Data tests', function () {
       AetnaCanonData.checkRichStructure(r);
     });
 
+    it('1.6 test create Roger', function () {
+      var r = AetnaCanonData.createRoger();
+      AetnaCanonData.checkRogerStructure(r);
+    });
+
   }); // describe 2
 });
