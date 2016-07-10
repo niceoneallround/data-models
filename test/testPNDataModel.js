@@ -321,12 +321,12 @@ describe('PNDataModel tests', function () {
 
     it('6.1 test createMdParamFromMdId simple', function () {
       var id = 'https://md.pn.id.webshield.io/privacy_algorithm/com/acme#value';
-      PNDataModel.ids.paramUtils.createMdParamFromMdId(id).should.be.equal('privacy_algorithm-com-acme--value');
+      PNDataModel.ids.paramUtils.createMdParamFromMdId(id).should.be.equal('privacy_algorithm___com___acme--value');
     }); //it 6.2
 
     it('6.2 test createMdParamFromMdId value has dashes', function () {
       var id = 'https://md.pn.id.webshield.io/privacy_algorithm/com/acme#value-1';
-      PNDataModel.ids.paramUtils.createMdParamFromMdId(id).should.be.equal('privacy_algorithm-com-acme--value-1');
+      PNDataModel.ids.paramUtils.createMdParamFromMdId(id).should.be.equal('privacy_algorithm___com___acme--value-1');
     }); //it 6.2
 
     it('6.3 createParamFromDomain test value has dahes', function () {
@@ -335,16 +335,34 @@ describe('PNDataModel tests', function () {
     }); //it 6.3
 
     it('6.4 createMdIdFromParam should produce an id from a param id', function () {
-      var param = 'privacy_algorithm-com-acme--value-1';
+      var param = 'privacy_algorithm___com___acme--value-1';
       PNDataModel.ids.paramUtils.createMdIdFromParam(param).should.be.equal('https://md.pn.id.webshield.io/privacy_algorithm/com/acme#value-1');
     }); //it 6.4
 
     it('6.5 test create param and then reverse are the same', function () {
       var id = 'https://md.pn.id.webshield.io/privacy_algorithm/com/acme#value-1',
           paramId = PNDataModel.ids.paramUtils.createMdParamFromMdId(id);
-      paramId.should.be.equal('privacy_algorithm-com-acme--value-1');
+      paramId.should.be.equal('privacy_algorithm___com___acme--value-1');
       PNDataModel.ids.paramUtils.createMdIdFromParam(paramId).should.be.equal(id);
-    }); //it 6.2
+    }); //it 6.5
+
+    it('6.6 test createParam value from bug with sv-1 being turned into sv/1', function () {
+      var param = 'privacy_pipe___io___webshield___aetnacon___sv-1--aetna-outbound-pipe2is-1468188067-1',
+      id = 'https://md.pn.id.webshield.io/privacy_pipe/io/webshield/aetnacon/sv-1#aetna-outbound-pipe2is-1468188067-1';
+
+      PNDataModel.ids.paramUtils.createMdParamFromMdId(id).should.be.equal(param);
+
+    }); //it 6.6
+
+    it('6.7 test createParam value from bug with sv-1 being turned into sv/1', function () {
+      var param = 'privacy_pipe___io___webshield___aetnacon___sv-1--aetna-outbound-pipe2is-1468188067-1';
+
+      PNDataModel.ids.paramUtils.createMdIdFromParam(param).should.be.equal(
+        'https://md.pn.id.webshield.io/privacy_pipe/io/webshield/aetnacon/sv-1#aetna-outbound-pipe2is-1468188067-1');
+
+      PNDataModel.ids.paramUtils.createMdIdFromParam(param).should.not.be.equal(
+          'https://md.pn.id.webshield.io/privacy_pipe/io/webshield/aetnacon/sv/1#aetna-outbound-pipe2is-1468188067-1');
+    }); //it 6.7
 
     describe('7 Test Domain Helpers', function () {
 
