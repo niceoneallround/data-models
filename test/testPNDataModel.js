@@ -223,7 +223,7 @@ describe('PNDataModel tests', function () {
     }); // 3.1
   }); // describe 3
 
-  describe('4 test utils', function () {
+  describe('4 test canme and url utils', function () {
 
     it('4.1 test create cname typed value', function () {
       var hostname = 'ps.svr.webshield.io', tv;
@@ -375,6 +375,25 @@ describe('PNDataModel tests', function () {
 
       }); //it 7.1
     });
+
+    describe('8 test syndication job utils', function () {
+
+      it('8.1 should return job is finished if status !== 202', function () {
+        var job = { status: 200 };
+        assert(PNDataModel.model.utils.isSyndicationJobFinished(job), 'job should be finished');
+      }); // 8.1
+
+      it('8.2 should return job is NOT finished if status === 202 ', function () {
+        var job = { status: 202 };
+        assert(!PNDataModel.model.utils.isSyndicationJobFinished(job), 'job should not be finished');
+      }); // 8.2
+
+      it('8.2 should return job is finished if status === 400 ', function () {
+        var job = { status: 400 };
+        assert(PNDataModel.model.utils.isSyndicationJobFinished(job), 'job should be finished');
+      }); // 8.2
+
+    }); // 8
 
   }); // describe 1
 });
