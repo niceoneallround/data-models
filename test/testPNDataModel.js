@@ -314,7 +314,24 @@ describe('PNDataModel tests', function () {
       error.should.have.property(PN_P.error);
 
       assert(PNDataModel.errors.isError(error), util.format('isError returned false for:%j', error));
-    }); // 5.3
+    }); // 5.4
+
+    it('5.5 test create forbidden error', function () {
+      var hostname = 'ps.svr.webshield.io', props = {}, error;
+
+      props.id = PNDataModel.ids.createErrorId(hostname, 'test53');
+      props.errMsg = 'hello';
+
+      error = PNDataModel.errors.createForbiddenError(props);
+      assert(error, 'no error returned');
+      error.should.have.property('@id');
+      error.should.have.property('@type');
+      assert(jsonldUtils.isType(error, PN_T.Error), util.format('%j is not of type:%s', error, PN_T.Error));
+      error.should.have.property(PN_P.httpStatus, '403');
+      error.should.have.property(PN_P.error);
+
+      assert(PNDataModel.errors.isError(error), util.format('isError returned false for:%j', error));
+    }); // 5.5
   }); // describe 5
 
   describe('6 Test Id to Param utils and the reverse', function () {
