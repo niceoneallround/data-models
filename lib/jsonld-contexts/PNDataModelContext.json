@@ -119,6 +119,7 @@
     "identity":                       "api_p:identity",
     "identity_syndication_algorithm": "pn_p:identity_syndication_algorithm",
     "issue_time":                     "api_p:issue_time",
+    "issuer":                         "pn_p:issuer",
     "items":                          "api_p:items",
     "items2":                         "pn_p:items2",
     "job":                            "pn_p:job",
