@@ -90,6 +90,10 @@
 
     "RSP":                            "api_t:RSP",
 
+    "Resource":                       "pn_t:Resource",
+    "OrgResource":                    "pn_t:OrgResource",
+    "ReferenceSourceResource":        "pn_t:ReferenceSourceResource",
+
     "action":                         "pn_p:action",
     "access_policy":                  "api_p:access_policy",
     "audit_log_ref":                  "api_p:audit_log_ref",
@@ -124,6 +128,7 @@
     "items2":                         "pn_p:items2",
     "job":                            "pn_p:job",
     "jwt":                            "pn_p:jwt",
+    "metadata":                       "pn_p:metadata",
     "md":                             "api_p:md",
     "name":                           "api_p:name",
     "node_type":                      "pn_p:node_type",

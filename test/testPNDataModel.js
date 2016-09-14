@@ -207,6 +207,15 @@ describe('PNDataModel tests', function () {
       id = PNDataModel.ids.createUserDataId(hostname, v);
       assert(id, 'no id returned');
       id.should.be.equal('https://id.webshield.io/com/acme#212');
+    }); // 2.16
+
+    it('2.17 test create resource id', function () {
+      var hostname = 'acme.com',
+          v = 212, id;
+
+      id = PNDataModel.ids.createResourceId(hostname, v);
+      assert(id, 'no id returned');
+      id.should.be.equal('https://md.pn.id.webshield.io/resource/com/acme#212');
     }); // 2.15
 
   }); // describe 2
