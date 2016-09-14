@@ -415,9 +415,11 @@ describe('Test Privacy PN Data Models', function () {
 
       props = {};
       props.id = 'dont-care1';
+      props.issuer = 'abc.com';
       props.privacyStep = 'dont-care2';
       pa = PPNUtils.createPrivacyAlgorithm(props);
       pa.should.have.property('@id', 'dont-care1');
+      pa.should.have.property(PN_P.issuer);
       assert(jsonldUtils.isType(pa, PN_T.PrivacyAlgorithm), util.format('%j should be a %s', pa, PN_T.PrivacyAlgorithm));
       pa.should.have.property(PN_P.privacyStep, ['dont-care2']);
     }); // 9.1
