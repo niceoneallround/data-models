@@ -407,6 +407,14 @@ describe('PNDataModel tests', function () {
           'https://md.pn.id.webshield.io/privacy_pipe/io/webshield/aetnacon/sv/1#aetna-outbound-pipe2is-1468188067-1');
     }); //it 6.7
 
+    it('6.8 test MdParam from MdId - was having a bug', function () {
+      let id = 'https://md.pn.id.webshield.io/privacy_algorithm/com/aetna#connector-pa-id-aetna-e2etest';
+
+      PNDataModel.ids.paramUtils.createMdParamFromMdId(id).should.be.equal(
+        'privacy_algorithm___com___aetna--connector-pa-id-aetna-e2etest'
+      );
+    }); //it 6.8
+
     describe('7 Test Domain Helpers', function () {
 
       it('7.1 should create a valid domainRequest', function () {
