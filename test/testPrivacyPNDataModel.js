@@ -421,6 +421,8 @@ describe('Test Privacy PN Data Models', function () {
       pa.should.have.property('@id', 'dont-care1');
       pa.should.have.property(PN_P.issuer);
       assert(jsonldUtils.isType(pa, PN_T.PrivacyAlgorithm), util.format('%j should be a %s', pa, PN_T.PrivacyAlgorithm));
+      assert(jsonldUtils.isType(pa, PN_T.Metadata), util.format('%j should be a %s', pa, PN_T.PrivacyMetadata));
+      assert(jsonldUtils.isType(pa, PN_T.Resource), util.format('%j should be a %s', pa, PN_T.Resource));
       pa.should.have.property(PN_P.privacyStep, ['dont-care2']);
     }); // 9.1
   }); // describe 9
