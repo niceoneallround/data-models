@@ -320,6 +320,7 @@ describe('Test Privacy PN Data Models', function () {
       props.hostname = 'fake.com';
       props.client = 'client.com';
       props.destination = 'https://destination.com/post';
+      props.provisionPipeURL = 'https://abc.com/provision';
       props.privacyAlgorithmId = 'privacy_algorithm_id';
       props.privacyNode = 'https://privacy_node/post';
       props.action = PN_T.Obfuscate;
@@ -331,6 +332,7 @@ describe('Test Privacy PN Data Models', function () {
       ppReq.should.have.property(PN_P.action, PN_T.Obfuscate);
       ppReq.should.have.property(PN_P.client);
       ppReq.should.have.property(PN_P.destination);
+      ppReq.should.have.property(PN_P.destinationProvisionPipeURL);
       ppReq.should.have.property(PN_P.privacyAlgorithm, props.privacyAlgorithmId);
       ppReq.should.have.property(PN_P.privacyNode);
 
