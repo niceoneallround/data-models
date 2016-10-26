@@ -128,6 +128,15 @@ describe('PNDataModel tests', function () {
       pvId.should.be.equal('https://md.pn.id.webshield.io/privacy_step/io/webshield/svr/ps#24');
     }); // 2.7
 
+    it('2.7.a test create privacy step id', function () {
+      var hostname = 'ps.svr.webshield.io',
+          id = 24, pvId;
+
+      pvId = PNDataModel.ids.createPrivacyStepInstanceId(hostname, id);
+      assert(pvId, 'no pvId returned');
+      pvId.should.be.equal('https://md.pn.id.webshield.io/pstep_instance/io/webshield/svr/ps#24');
+    }); // 2.7.a
+
     it('2.8 test create privacy action id', function () {
       var hostname = 'ps.svr.webshield.io',
           id = 24, pvId;
@@ -137,6 +146,15 @@ describe('PNDataModel tests', function () {
       pvId.should.be.equal('https://md.pn.id.webshield.io/privacy_action/io/webshield/svr/ps#24');
     }); // 2.8
 
+    it('2.8.a test create privacy action instance id', function () {
+      var hostname = 'ps.svr.webshield.io',
+          id = 24, pvId;
+
+      pvId = PNDataModel.ids.createPrivacyActionInstanceId(hostname, id);
+      assert(pvId, 'no pvId returned');
+      pvId.should.be.equal('https://md.pn.id.webshield.io/paction_instance/io/webshield/svr/ps#24');
+    }); // 2.8.a
+
     it('2.9 test create privacy algorithm id', function () {
       var hostname = 'ps.svr.webshield.io',
           id = 29, pvId;
@@ -145,6 +163,15 @@ describe('PNDataModel tests', function () {
       assert(pvId, 'no pvId returned');
       pvId.should.be.equal('https://md.pn.id.webshield.io/privacy_algorithm/io/webshield/svr/ps#29');
     }); // 2.9
+
+    it('2.9.a test create privacy algorithm instance id', function () {
+      var hostname = 'ps.svr.webshield.io',
+          id = 29, pvId;
+
+      pvId = PNDataModel.ids.createPrivacyAlgorithmInstanceId(hostname, id);
+      assert(pvId, 'no pvId returned');
+      pvId.should.be.equal('https://md.pn.id.webshield.io/palgorithm_instance/io/webshield/svr/ps#29');
+    }); // 2.9.a
 
     it('2.10 test create error id', function () {
       var hostname = 'ps.svr.webshield.io',
