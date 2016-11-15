@@ -254,6 +254,15 @@ describe('PNDataModel tests', function () {
       id.should.be.equal('https://pn.id.webshield.io/syndication_request/com/acme#212');
     }); // 2.18
 
+    it('2.19 test create kms id', function () {
+      var hostname = 'acme.com',
+          v = 212, id;
+
+      id = PNDataModel.ids.createKMSId(hostname, v);
+      assert(id, 'no id returned');
+      id.should.be.equal('https://md.pn.id.webshield.io/kms/com/acme#212');
+    }); // 2.19
+
   }); // describe 2
 
   describe('3 test tag utils', function () {
