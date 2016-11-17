@@ -255,13 +255,22 @@ describe('PNDataModel tests', function () {
     }); // 2.18
 
     it('2.19 test create kms id', function () {
-      var hostname = 'acme.com',
-          v = 212, id;
+      const hostname = 'acme.com';
+      const v = 212;
 
-      id = PNDataModel.ids.createKMSId(hostname, v);
+      let id = PNDataModel.ids.createKMSId(hostname, v);
       assert(id, 'no id returned');
       id.should.be.equal('https://md.pn.id.webshield.io/kms/com/acme#212');
     }); // 2.19
+
+    it('2.20 test create encrypt key id', function () {
+      const hostname = 'acme.com';
+      const v = 212;
+
+      let id = PNDataModel.ids.createEncryptKeyId(hostname, v);
+      assert(id, 'no id returned');
+      id.should.be.equal('https://md.pn.id.webshield.io/encrypt_key/com/acme#212');
+    }); // 2.20
 
   }); // describe 2
 
