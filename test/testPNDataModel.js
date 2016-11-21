@@ -281,6 +281,15 @@ describe('PNDataModel tests', function () {
       id.should.be.equal('https://md.pn.id.webshield.io/pn_data_model/com/acme#212');
     }); // 2.21
 
+    it('2.22 test create Organization id', function () {
+      const hostname = 'acme.com';
+      const v = 212;
+
+      let id = PNDataModel.ids.createOrganizationId(hostname, v);
+      assert(id, 'no id returned');
+      id.should.be.equal('https://md.pn.id.webshield.io/organization/com/acme#212');
+    }); // 2.22
+
   }); // describe 2
 
   describe('3 test tag utils', function () {
