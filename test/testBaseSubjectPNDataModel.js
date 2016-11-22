@@ -14,7 +14,7 @@ describe('1. BaseSubjectPNDataModel - validate JSONLD context', function () {
       givenName: 'bob',
       familyName: 'smith',
       taxID: 'tax_id',
-      sourceId: 1718181,
+      sourceID: 1718181,
       address: {
         type: 'PostalAddress',
         postalCode: '94107'
@@ -32,7 +32,7 @@ describe('1. BaseSubjectPNDataModel - validate JSONLD context', function () {
         result.should.have.property('@id');
         result.should.have.property('@type');
         result.should.have.property('https://schema.org/taxID');
-        result.should.have.property('https://pn.schema.webshield.io/prop#sourceId');
+        result.should.have.property('https://pn.schema.webshield.io/prop#sourceID');
       });
 
   });
