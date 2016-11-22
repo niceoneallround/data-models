@@ -14,7 +14,7 @@ describe('1. BaseSubjectPNDataModel - validate JSONLD context', function () {
       givenName: 'bob',
       familyName: 'smith',
       taxID: 'tax_id',
-      sourceID: 1718181,
+      sourceId: 1718181,
       address: {
         type: 'PostalAddress',
         postalCode: '94107'
@@ -26,12 +26,13 @@ describe('1. BaseSubjectPNDataModel - validate JSONLD context', function () {
     optionsMap.set('@context', BaseSubjectPNDataModel.model.JSONLD_CONTEXT);
     return JSONLDUtils.promises.expandCompact(bob, optionsMap)
       .then(function (result) {
-        console.log('***EXPANDED/Compact:%s', JSON.stringify(result, null, 2));
+        //console.log('***EXPANDED/Compact:%s', JSON.stringify(result, null, 2));
 
         //  check ASSUMPTIONS used by code
         result.should.have.property('@id');
         result.should.have.property('@type');
         result.should.have.property('https://schema.org/taxID');
+        result.should.have.property('https://pn.schema.webshield.io/prop#sourceId');
       });
 
   });
