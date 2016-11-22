@@ -290,6 +290,15 @@ describe('PNDataModel tests', function () {
       id.should.be.equal('https://md.pn.id.webshield.io/organization/com/acme#212');
     }); // 2.22
 
+    it('2.23 test create Ingest Privacy Agent Idd', function () {
+      const hostname = 'acme.com';
+      const v = 212;
+
+      let id = PNDataModel.ids.createIngestPrivacyAgentId(hostname, v);
+      assert(id, 'no id returned');
+      id.should.be.equal('https://md.pn.id.webshield.io/ingest_privacy_agent/com/acme#212');
+    }); // 2.23
+
   }); // describe 2
 
   describe('3 test tag utils', function () {
