@@ -278,7 +278,7 @@ describe('PNDataModel tests', function () {
 
       let id = PNDataModel.ids.createPNDataModelId(hostname, v);
       assert(id, 'no id returned');
-      id.should.be.equal('https://md.pn.id.webshield.io/pn_data_model/com/acme#212');
+      id.should.be.equal('https://md.pn.id.webshield.io/pndatamodel/com/acme#212');
     }); // 2.21
 
     it('2.22 test create Organization id', function () {
