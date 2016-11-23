@@ -1,6 +1,7 @@
 /*jslint node: true, vars: true */
 
 const BaseSubjectPNDataModel = require('../lib/BaseSubjectPNDataModel');
+const BASE_P = BaseSubjectPNDataModel.PROPERTY;
 const JSONLDUtils = require('jsonld-utils/lib/jldUtils');
 const should = require('should');
 
@@ -21,7 +22,7 @@ describe('1. BaseSubjectPNDataModel - validate JSONLD context', function () {
       },
     };
 
-    console.log(BaseSubjectPNDataModel.model.JSONLD_CONTEXT);
+    //console.log(BaseSubjectPNDataModel.model.JSONLD_CONTEXT);
     let optionsMap = new Map();
     optionsMap.set('@context', BaseSubjectPNDataModel.model.JSONLD_CONTEXT);
     return JSONLDUtils.promises.expandCompact(bob, optionsMap)
@@ -34,7 +35,20 @@ describe('1. BaseSubjectPNDataModel - validate JSONLD context', function () {
         result.should.have.property('https://schema.org/taxID');
         result.should.have.property('http://pn.schema.webshield.io/prop#sourceID');
       });
-
   });
+});
 
+describe('2. BaseSubjectPNDataModel - test Canons', function () {
+  'use strict';
+
+  it('2.1 create canons', function () {
+
+    let alice = BaseSubjectPNDataModel.canons.createAlice();
+    alice.should.have.property('@id',  BaseSubjectPNDataModel.canons.data.alice.id);
+    alice.should.have.property(BASE_P.address);
+    alice[BASE_P.address].should.not.have.property('@id');
+
+    let bob = BaseSubjectPNDataModel.canons.createBob();
+    bob.should.have.property('@id',  BaseSubjectPNDataModel.canons.data.bob.id);
+  });
 });
