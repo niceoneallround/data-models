@@ -46,6 +46,7 @@ describe('2. BaseSubjectPNDataModel - test Canons', function () {
     let props = { domainName: 'abc.com' };
     let alice = BaseSubjectPNDataModel.canons.createAlice(props);
     alice.should.have.property('@id',  BaseSubjectPNDataModel.canons.data.alice.id);
+    alice.should.have.property('@type', BaseSubjectPNDataModel.TYPE.Subject);
     alice.should.have.property(BASE_P.address);
     alice[BASE_P.address].should.have.property('@id');
 
