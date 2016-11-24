@@ -1,21 +1,21 @@
 /*jslint node: true, vars: true */
 
-var should = require('should'),
-  assert = require('assert'),
-  jsonldUtils = require('jsonld-utils/lib/jldUtils'),
-  PNDataModel = require('../lib/PNDataModel'),
-  PN_P = PNDataModel.PROPERTY,
-  PN_T = PNDataModel.TYPE,
-  util = require('util');
+const should = require('should');
+const assert = require('assert');
+const jsonldUtils = require('jsonld-utils/lib/jldUtils');
+const PNDataModel = require('../lib/PNDataModel');
+const PN_P = PNDataModel.PROPERTY;
+const PN_T = PNDataModel.TYPE;
+const util = require('util');
 
 describe('PNDataModel tests', function () {
   'use strict';
 
   describe('1 test findObjects specialized to PNDataModel works', function () {
 
-    var testObject, data = [];
+    let data = [];
 
-    testObject = {};
+    let testObject = {};
     testObject['@id'] = 'http://id.webshield.io/test#1';
     testObject['@type'] = PN_T.CreateDataset;
     testObject[PN_P.domain] = 'http://id.webshield.io/domain/io/webshield#1';
@@ -29,7 +29,7 @@ describe('PNDataModel tests', function () {
 
     it('1.1 test find the object', function () {
 
-      var findObjectPromise = PNDataModel.promises.findObjects(data, PN_T.CreateDataset);
+      let findObjectPromise = PNDataModel.promises.findObjects(data, PN_T.CreateDataset);
 
       // let mocha deal with all unexpected errors
       return findObjectPromise.then(
@@ -41,7 +41,7 @@ describe('PNDataModel tests', function () {
 
     it('1.2 test find the object', function () {
 
-      var findObjectPromise = PNDataModel.promises.findObjects(data, PN_T.Assertion);
+      let findObjectPromise = PNDataModel.promises.findObjects(data, PN_T.Assertion);
 
       // let mocha deal with all unexpected errors
       return findObjectPromise.then(
@@ -53,7 +53,7 @@ describe('PNDataModel tests', function () {
 
     it('1.3 test do not find the object', function () {
 
-      var findObjectPromise = PNDataModel.promises.findObjects(data, 'http://bogus');
+      let findObjectPromise = PNDataModel.promises.findObjects(data, 'http://bogus');
 
       // let mocha deal with all unexpected errors
       return findObjectPromise.then(
@@ -290,7 +290,7 @@ describe('PNDataModel tests', function () {
       id.should.be.equal('https://md.pn.id.webshield.io/organization/com/acme#212');
     }); // 2.22
 
-    it('2.23 test create Ingest Privacy Agent Idd', function () {
+    it('2.23 test create Ingest Privacy Agent Id', function () {
       const hostname = 'acme.com';
       const v = 212;
 
@@ -298,6 +298,16 @@ describe('PNDataModel tests', function () {
       assert(id, 'no id returned');
       id.should.be.equal('https://md.pn.id.webshield.io/ingest_privacy_agent/com/acme#212');
     }); // 2.23
+
+    it('2.24 test create Id No PN Prefix', function () {
+      const hostname = 'acme.com';
+      const v = 212;
+      const type = 'address';
+
+      let id = PNDataModel.ids.createExternalId(hostname, v, type);
+      assert(id, 'no id returned');
+      id.should.be.equal('https://id.webshield.io/com/acme/address#212');
+    }); // 2.24
 
   }); // describe 2
 

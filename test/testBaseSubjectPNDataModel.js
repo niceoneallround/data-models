@@ -43,12 +43,13 @@ describe('2. BaseSubjectPNDataModel - test Canons', function () {
 
   it('2.1 create canons', function () {
 
-    let alice = BaseSubjectPNDataModel.canons.createAlice();
+    let props = { domainName: 'abc.com' };
+    let alice = BaseSubjectPNDataModel.canons.createAlice(props);
     alice.should.have.property('@id',  BaseSubjectPNDataModel.canons.data.alice.id);
     alice.should.have.property(BASE_P.address);
-    alice[BASE_P.address].should.not.have.property('@id');
+    alice[BASE_P.address].should.have.property('@id');
 
-    let bob = BaseSubjectPNDataModel.canons.createBob();
+    let bob = BaseSubjectPNDataModel.canons.createBob(props);
     bob.should.have.property('@id',  BaseSubjectPNDataModel.canons.data.bob.id);
   });
 });
