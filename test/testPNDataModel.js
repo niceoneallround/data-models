@@ -263,13 +263,13 @@ describe('PNDataModel tests', function () {
       id.should.be.equal('https://md.pn.id.webshield.io/kms/com/acme#212');
     }); // 2.19
 
-    it('2.20 test create encrypt key id', function () {
+    it('2.20 test create encrypt key metadata id', function () {
       const hostname = 'acme.com';
       const v = 212;
 
-      let id = PNDataModel.ids.createEncryptKeyId(hostname, v);
+      let id = PNDataModel.ids.createEncryptKeyMetadataId(hostname, v);
       assert(id, 'no id returned');
-      id.should.be.equal('https://md.pn.id.webshield.io/encrypt_key/com/acme#212');
+      id.should.be.equal('https://md.pn.id.webshield.io/encrypt_key_md/com/acme#212');
     }); // 2.20
 
     it('2.21 test create PN Data Model id', function () {
