@@ -4,8 +4,8 @@
   "description": "Contains the PNDataModel definitions",
   "main": "index.js",
   "scripts": {
-    "test": "grunt test",
-    "build": "grunt test"
+    "test": "gulp test",
+    "build": "gulp test"
   },
   "repository": {
     "type": "git",
@@ -30,11 +30,16 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
-    "grunt": "^1.0.1",
-    "grunt-buddyjs": "^0.1.0",
-    "grunt-contrib-jshint": "^1.0.0",
-    "grunt-jscs": "^2.6.0",
-    "grunt-mocha-test": "^0.12.7",
-    "mocha": "^2.3.4"
+    "gulp": "^3.9.1",
+    "gulp-buddy.js": "^1.0.0",
+    "gulp-istanbul": "^1.0.0",
+    "gulp-jscs": "^4.0.0",
+    "gulp-jshint": "^2.0.1",
+    "gulp-mocha": "^3.0.1",
+    "gulp-nsp": "^2.4.2",
+    "js-yaml": "^3.6.1",
+    "jshint": "^2.9.2",
+    "jshint-stylish": "^2.2.0",
+    "yargs": "^6.4.0"
   }
 }
