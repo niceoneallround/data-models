@@ -34,7 +34,7 @@ gulp.task('jscs', function () {
 gulp.task('buddyjs', function () {
   return gulp.src(SOURCE_CODE)
     .pipe(buddyjs({
-      ignore: [0, 1, 2, 10],
+      ignore: [0, 1, 2, 3, 10],
       reporter: 'detailed',
     }));
 });
