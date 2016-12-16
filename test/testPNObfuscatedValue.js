@@ -81,5 +81,12 @@ describe('PNov Obfuscated Value Tests', function () {
       oitem.should.have.property('type', 'type1');
       oitem.should.have.property('v', 'value1');
     }); //it 3.1
+
+    it('3.2 should create a PN Obfuscted value from an Oitem', function () {
+      let oitem = PNOVUtils.createOItem('id1', 'type1', 'value1');
+      let ov = PNOVUtils.createOVFromOItem(oitem);
+      ov.should.have.property('@type', 'type1');
+      ov.should.have.property('@value', 'value1');
+    }); //it 3.1
   }); // describe 3
 });
