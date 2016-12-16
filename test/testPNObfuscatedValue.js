@@ -71,6 +71,15 @@ describe('PNov Obfuscated Value Tests', function () {
       unpack.should.have.property('n', 'nonce1');
       unpack.should.not.have.property('aad');
     });
+  }); // describe 2
 
-  }); // describe 1
+  describe('3 OItem tests', function () {
+
+    it('3.1 should created Oitem just id, type and v', function () {
+      let oitem = PNOVUtils.createOItem('id1', 'type1', 'value1');
+      oitem.should.have.property('id', 'id1');
+      oitem.should.have.property('type', 'type1');
+      oitem.should.have.property('v', 'value1');
+    }); //it 3.1
+  }); // describe 3
 });
