@@ -10,13 +10,14 @@ describe('1. BaseSubjectPNDataModel - validate JSONLD context', function () {
 
   it('1.1 expand full object', function () {
     const bob = {
-      id: 'http://id.webshield.io/com/acme/1718181',
+      id: 'https://id.webshield.io/com/acme/1718181',
       type: 'Subject',
       givenName: 'bob',
       familyName: 'smith',
       taxID: 'tax_id',
       sourceID: 1718181,
       address: {
+        id: 'https://id.webshield.io/com/acme/address/addr_1',
         type: 'PostalAddress',
         postalCode: '94107'
       },
