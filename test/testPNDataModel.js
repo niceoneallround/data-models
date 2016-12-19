@@ -299,7 +299,7 @@ describe('PNDataModel tests', function () {
       id.should.be.equal('https://md.pn.id.webshield.io/ingest_privacy_agent/com/acme#212');
     }); // 2.23
 
-    it('2.24 test create Id No PN Prefix', function () {
+    it('2.24 test create basic data @id, should have no pn.id prefix', function () {
       const hostname = 'acme.com';
       const v = 212;
       const type = 'address';
@@ -308,6 +308,15 @@ describe('PNDataModel tests', function () {
       assert(id, 'no id returned');
       id.should.be.equal('https://id.webshield.io/com/acme/address#212');
     }); // 2.24
+
+    it('2.25 test create Obfuscation Service Id', function () {
+      const hostname = 'acme.com';
+      const v = 212;
+
+      let id = PNDataModel.ids.createObfuscationServiceId(hostname, v);
+      assert(id, 'no id returned');
+      id.should.be.equal('https://md.pn.id.webshield.io/obfuscation_service/com/acme#212');
+    }); // 2.25
 
   }); // describe 2
 
