@@ -73,7 +73,7 @@ describe('PNov Obfuscated Value Tests', function () {
     });
   }); // describe 2
 
-  describe('3 OItem tests', function () {
+  describe('3 create Oitem tests', function () {
 
     it('3.1 should created Oitem just id, type and v', function () {
       let oitem = PNOVUtils.createOItem('id1', 'type1', 'value1');
@@ -82,11 +82,23 @@ describe('PNov Obfuscated Value Tests', function () {
       oitem.should.have.property('v', 'value1');
     }); //it 3.1
 
-    it('3.2 should create a PN Obfuscted value from an Oitem', function () {
+    it('3.2 should create an Oitem from a PN Obfuscated Value', function () {
+      let ov = { '@type': 'paiid', '@value': 'nonce1..val1' };
+      let newOI = PNOVUtils.createOItemFromOV('11', ov);
+      newOI.should.have.property('id', '11');
+      newOI.should.have.property('type', 'paiid');
+      newOI.should.have.property('v', 'val1');
+      newOI.should.have.property('n', 'nonce1');
+    }); //it 3.2
+  }); // describe 3
+
+  describe('4 create OV tests', function () {
+
+    it('4.1 should create a PN Obfuscted value from an Oitem', function () {
       let oitem = PNOVUtils.createOItem('id1', 'type1', 'value1');
       let ov = PNOVUtils.createOVFromOItem(oitem);
       ov.should.have.property('@type', 'type1');
       ov.should.have.property('@value', 'value1');
-    }); //it 3.1
-  }); // describe 3
+    }); //it 4.1
+  }); // describe 4
 });
