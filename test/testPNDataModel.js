@@ -245,7 +245,7 @@ describe('PNDataModel tests', function () {
       id.should.be.equal('https://md.pn.id.webshield.io/resource/com/acme#212');
     }); // 2.17
 
-    it('2.18 test create syndicatiton request id', function () {
+    it('2.18 test create syndication request id', function () {
       var hostname = 'acme.com',
           v = 212, id;
 
@@ -253,6 +253,15 @@ describe('PNDataModel tests', function () {
       assert(id, 'no id returned');
       id.should.be.equal('https://pn.id.webshield.io/syndication_request/com/acme#212');
     }); // 2.18
+
+    it('2.18b test create syndicatated entity id', function () {
+      var hostname = 'acme.com',
+          v = 212, id;
+
+      id = PNDataModel.ids.createSyndicatedEntityId(hostname, v);
+      assert(id, 'no id returned');
+      id.should.be.equal('https://pn.id.webshield.io/syndicated_entity/com/acme#212');
+    }); // 2.18b
 
     it('2.19 test create kms id', function () {
       const hostname = 'acme.com';
