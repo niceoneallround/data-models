@@ -318,6 +318,15 @@ describe('PNDataModel tests', function () {
       id.should.be.equal('https://md.pn.id.webshield.io/obfuscation_service/com/acme#212');
     }); // 2.25
 
+    it('2.26 test if pass in a url the leaves as a url', function () {
+      const hostname = 'acme.com';
+      const v = 'https://abc.com';
+
+      let id = PNDataModel.ids.createObfuscationServiceId(hostname, v);
+      assert(id, 'no id returned');
+      id.should.be.equal('https://abc.com');
+    }); // 2.25
+
   }); // describe 2
 
   describe('3 test tag utils', function () {
