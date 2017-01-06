@@ -2,6 +2,7 @@
 
 const should = require('should');
 const PNDataModel = require('../lib/PNDataModel');
+const PN_P = PNDataModel.PROPERTY;
 const PN_T = PNDataModel.TYPE;
 const PNSyndicatedEntity = require('../lib/PNSyndicatedEntity');
 
@@ -11,9 +12,11 @@ describe('PNSE PN Syndicated Entty Tests', function () {
   describe('1 create PN Syndicated Tests', function () {
 
     it('1.1 create PN obfuscated value with just a value', function () {
-      let se = PNSyndicatedEntity.create('23', { hostname: 'abc.com', });
-      se.should.have.property('@id');
+      let se = PNSyndicatedEntity.create('23', { hostname: 'abc.com', jobId: 'job-id', pnDataModelId: 'dm-id', });
+      se.should.have.property('@id', 'https://pn.id.webshield.io/syndicated_entity/com/abc#23');
       se.should.have.property('@type', [PN_T.SyndicatedEntity]);
+      se.should.have.property(PN_P.pnDataModel, 'dm-id');
+      se.should.have.property(PN_P.job, 'job-id');
     });
 
   }); // describe 1
