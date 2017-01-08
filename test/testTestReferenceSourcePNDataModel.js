@@ -38,7 +38,7 @@ describe('1. TestReferenceSourcePNDataModel - validate JSONLD context', function
         result.should.have.property('@type');
         result.should.have.property('https://schema.org/taxID');
         result.should.have.property('http://pn.schema.webshield.io/prop#sourceID');
-        result.should.have.property('https://testrs.pn.schema.webshield.io/prop#transactionID');
+        result.should.have.property('https://rs.test.webshield.io.schema.webshield.io/prop#transactionID');
         result.should.have.property(TestReferenceSourcePNDataModel.PROPERTY.transactionID);
       });
   });
