@@ -336,6 +336,15 @@ describe('PNDataModel tests', function () {
       id.should.be.equal('https://abc.com');
     }); // 2.25
 
+    it('2.27 test create query id', function () {
+      var hostname = 'ps.svr.webshield.io',
+          id = 27, pvId;
+
+      pvId = PNDataModel.ids.createQueryId(hostname, id);
+      assert(pvId, 'no pvId returned');
+      pvId.should.be.equal('https://pn.id.webshield.io/query/io/webshield/svr/ps#27');
+    }); // 2.6
+
   }); // describe 2
 
   describe('3 test tag utils', function () {
