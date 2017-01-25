@@ -12,10 +12,11 @@ describe('PNSE PN Syndicated Entty Tests', function () {
   describe('1 create PN Syndicated Tests', function () {
 
     it('1.1 create PN obfuscated value with just a value', function () {
-      let se = PNSyndicatedEntity.create('23', { hostname: 'abc.com', jobId: 'job-id', pnDataModelId: 'dm-id', });
+      let se = PNSyndicatedEntity.createJSON('23', { hostname: 'abc.com', jobId: 'job-id', pnDataModelId: 'dm-id', subjects: 'a' });
       se.should.have.property('@id', 'https://pn.id.webshield.io/syndicated_entity/com/abc#23');
       se.should.have.property('@type', [PN_T.SyndicatedEntity]);
       se.should.have.property(PN_P.pnDataModel, 'dm-id');
+      se.should.have.property(PN_P.subject, ['a']);
       se.should.have.property(PN_P.job, 'job-id');
     });
 
