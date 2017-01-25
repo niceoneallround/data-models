@@ -343,7 +343,16 @@ describe('PNDataModel tests', function () {
       pvId = PNDataModel.ids.createQueryId(hostname, id);
       assert(pvId, 'no pvId returned');
       pvId.should.be.equal('https://pn.id.webshield.io/query/io/webshield/svr/ps#27');
-    }); // 2.6
+    }); // 2.27
+
+    it('2.28 test subject link id', function () {
+      var hostname = 'ps.svr.webshield.io',
+          id = 27, pvId;
+
+      pvId = PNDataModel.ids.createLinkSubjectId(hostname, id);
+      assert(pvId, 'no pvId returned');
+      pvId.should.be.equal('https://pn.id.webshield.io/link_subject/io/webshield/svr/ps#27');
+    }); // 2.28
 
   }); // describe 2
 
