@@ -349,9 +349,9 @@ describe('PNDataModel tests', function () {
       var hostname = 'ps.svr.webshield.io',
           id = 27, pvId;
 
-      pvId = PNDataModel.ids.createLinkSubjectId(hostname, id);
+      pvId = PNDataModel.ids.createSubjectLinkId(hostname, id);
       assert(pvId, 'no pvId returned');
-      pvId.should.be.equal('https://pn.id.webshield.io/link_subject/io/webshield/svr/ps#27');
+      pvId.should.be.equal('https://pn.id.webshield.io/subject_link/io/webshield/svr/ps#27');
     }); // 2.28
 
   }); // describe 2
