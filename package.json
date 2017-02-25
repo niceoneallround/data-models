@@ -1,6 +1,6 @@
 {
   "name": "data-models",
-  "version": "1.2.61",
+  "version": "1.2.62",
   "description": "Contains the PNDataModel definitions",
   "main": "index.js",
   "scripts": {
