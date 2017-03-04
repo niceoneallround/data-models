@@ -147,10 +147,10 @@ describe('PNDataModel tests', function () {
     }); // 2.8
 
     it('2.8.a test create privacy action instance id', function () {
-      var hostname = 'ps.svr.webshield.io',
-          id = 24, pvId;
+      const hostname = 'ps.svr.webshield.io';
+      const id = 24;
 
-      pvId = PNDataModel.ids.createPrivacyActionInstanceId(hostname, id);
+      let pvId = PNDataModel.ids.createPrivacyActionInstanceId(hostname, id);
       assert(pvId, 'no pvId returned');
       pvId.should.be.equal('https://md.pn.id.webshield.io/paction_instance/io/webshield/svr/ps#24');
     }); // 2.8.a

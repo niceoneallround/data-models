@@ -1,7 +1,10 @@
 /*jslint node: true, vars: true */
 
+const assert = require('assert');
 const should = require('should');
+const PNDataModel = require('../lib/PNDataModel');
 const PNOVUtils = require('../lib/PNObfuscatedValue').utils;
+const util = require('util');
 
 describe('PNov Obfuscated Value Tests', function () {
   'use strict';
@@ -101,4 +104,28 @@ describe('PNov Obfuscated Value Tests', function () {
       ov.should.have.property('@value', 'value1');
     }); //it 4.1
   }); // describe 4
+
+  describe('5 test is OV', function () {
+
+    it('5.1 should return true is value is an OV', function () {
+      const pvId = PNDataModel.ids.createPrivacyActionInstanceId('fake.com', 1);
+      const ov = { '@type': pvId, '@value': 'dont-care', };
+      assert(PNOVUtils.isOV(ov), util.format('Value should be an OV:%j', ov));
+    }); //it 5.1
+
+    it('5.2 should return false is value is a string', function () {
+      assert(!PNOVUtils.isOV('abce'), util.format('Value should not be an OV:%s', 'abce'));
+    }); //it 5.2
+
+    it('5.3 should return false is value is a jsonld object node', function () {
+      const o = { '@type': 'abc', '@id': 'dont-care', };
+      assert(!PNOVUtils.isOV(o), util.format('Value should not be an OV:%j', o));
+    }); //it 5.3
+
+    it('5.4 should return false if @type is not an action', function () {
+      const o = { '@type': 'abc', '@value': 'dont-care', };
+      assert(!PNOVUtils.isOV(o), util.format('Value should not be an OV:%j', o));
+    }); //it 5.4
+
+  }); // describe 5
 });
