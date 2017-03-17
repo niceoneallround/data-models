@@ -52,7 +52,7 @@ describe('2. - test Canons', function () {
     let props = { domainName: 'abc.com' };
     let alice = TestReferenceSourcePNDataModel.canons.createAlice(props);
     alice.should.have.property('@id',  TestReferenceSourcePNDataModel.canons.data.alice.id);
-    alice.should.have.property('@type', TestReferenceSourcePNDataModel.TYPE.Subject);
+    alice.should.have.property('@type', [TestReferenceSourcePNDataModel.TYPE.Subject]);
     alice.should.have.property(TRS_P.transactionID);
 
     alice.should.have.property(BASE_P.address);
